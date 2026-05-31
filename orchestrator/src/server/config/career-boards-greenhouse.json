@@ -1,0 +1,56 @@
+[
+  {
+    "id": "temporal-greenhouse",
+    "label": "Temporal",
+    "ats": "greenhouse",
+    "greenhouseUrl": "https://boards-greenhouse.io/temporal",
+    "tags": ["infrastructure", "distributed-systems", "workflow"],
+    "countries": ["US", "Remote"],
+    "status": "active"
+  },
+  {
+    "id": "scale-ai-greenhouse",
+    "label": "Scale AI",
+    "ats": "greenhouse",
+    "greenhouseUrl": "https://boards.greenhouse.io/scaleai",
+    "tags": ["ai", "data-labeling", "enterprise"],
+    "countries": ["US", "Remote"],
+    "status": "active"
+  },
+  {
+    "id": "notion-greenhouse",
+    "label": "Notion",
+    "ats": "greenhouse",
+    "greenhouseUrl": "https://boards.greenhouse.io/notion",
+    "tags": ["productivity", "collaboration", "editor"],
+    "countries": ["US", "Remote"],
+    "status": "active"
+  },
+  {
+    "id": "retool-greenhouse",
+    "label": "Retool",
+    "ats": "greenhouse",
+    "greenhouseUrl": "https://boards.greenhouse.io/retool",
+    "tags": ["developer-tools", "internal-tools", "low-code"],
+    "countries": ["US", "Remote"],
+    "status": "active"
+  },
+  {
+    "id": "figma-greenhouse",
+    "label": "Figma",
+    "ats": "greenhouse",
+    "greenhouseUrl": "https://boards.greenhouse.io/figma",
+    "tags": ["design", "collaboration", "browser-based"],
+    "countries": ["US", "Remote"],
+    "status": "active"
+  },
+  {
+    "id": "loom-greenhouse",
+    "label": "Loom",
+    "ats": "greenhouse",
+    "greenhouseUrl": "https://boards.greenhouse.io/loom",
+    "tags": ["video", "communication", "async"],
+    "countries": ["US", "Remote"],
+    "status": "active"
+  }
+]

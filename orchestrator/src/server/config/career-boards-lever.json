@@ -1,0 +1,29 @@
+[
+  {
+    "id": "flyio-lever",
+    "label": "Fly.io",
+    "ats": "lever",
+    "leverUrl": "https://jobs.lever.co/flyio",
+    "tags": ["infrastructure", "edge-computing", "distributed-systems"],
+    "countries": ["US", "Remote"],
+    "status": "active"
+  },
+  {
+    "id": "planetscale-lever",
+    "label": "PlanetScale",
+    "ats": "lever",
+    "leverUrl": "https://jobs.lever.co/planetscale",
+    "tags": ["database", "mysql", "serverless"],
+    "countries": ["US", "Remote"],
+    "status": "active"
+  },
+  {
+    "id": "cohere-lever",
+    "label": "Cohere",
+    "ats": "lever",
+    "leverUrl": "https://jobs.lever.co/cohere",
+    "tags": ["ai", "nlp", "llm", "enterprise"],
+    "countries": ["US", "UK", "Canada", "Remote"],
+    "status": "active"
+  }
+]

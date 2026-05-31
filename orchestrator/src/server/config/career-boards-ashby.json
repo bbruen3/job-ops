@@ -1,0 +1,29 @@
+[
+  {
+    "id": "railway-ashby",
+    "label": "Railway",
+    "ats": "ashby",
+    "ashbyUrl": "https://jobs.ashbyhq.com/railway",
+    "tags": ["infrastructure", "paas", "developer-tools"],
+    "countries": ["US", "Remote"],
+    "status": "active"
+  },
+  {
+    "id": "mistral-ashby",
+    "label": "Mistral",
+    "ats": "ashby",
+    "ashbyUrl": "https://jobs.ashbyhq.com/mistral",
+    "tags": ["ai", "llm", "open-source"],
+    "countries": ["US", "UK", "France", "Remote"],
+    "status": "active"
+  },
+  {
+    "id": "perplexity-ashby",
+    "label": "Perplexity",
+    "ats": "ashby",
+    "ashbyUrl": "https://jobs.ashbyhq.com/perplexity",
+    "tags": ["ai", "search", "llm"],
+    "countries": ["US", "Remote"],
+    "status": "active"
+  }
+]

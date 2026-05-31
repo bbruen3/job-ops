@@ -584,6 +584,10 @@ export const settingsRegistry = {
     kind: "model" as const,
     schema: z.string().trim().max(200),
   },
+  modelResumeEnhance: {
+    kind: "model" as const,
+    schema: z.string().trim().max(200),
+  },
 
   // --- Simple Strings ---
   rxresumeBaseResumeId: {

@@ -193,6 +193,7 @@ export interface AppSettings {
   modelScorer: ModelResolved;
   modelTailoring: ModelResolved;
   modelProjectSelection: ModelResolved;
+  modelResumeEnhance: ModelResolved;
 
   // Simple strings:
   rxresumeBaseResumeId: string | null;
