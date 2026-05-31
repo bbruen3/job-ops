@@ -76,9 +76,9 @@
 - [x] 7.10 Implement separate artifact storage: per-job tailored artifact with metadata (keywords, classification, diff, PDF path)
 - [x] 7.11 Verify base Resume Studio document is NOT modified by tailoring
 - [x] 7.12 Add `modelResumeEnhance` per-task model override to `LlmService`
-- [ ] 7.13 Wire ATS optimization into per-job tailoring flow ("Tailor for this job" trigger)
-- [ ] 7.14 Add paper format detection: parse company location from JD, select letter (US/Canada) or A4 (rest of world)
-- [ ] 7.15 Add unit tests for ATS normalization, keyword extraction, role classification, and diff verification with length floor
+- [x] 7.13 Wire ATS optimization into per-job tailoring flow ("Tailor for this job" trigger)
+- [x] 7.14 Add paper format detection: parse company location from JD, select letter (US/Canada) or A4 (rest of world)
+- [x] 7.15 Add unit tests for ATS normalization, keyword extraction, role classification, and diff verification with length floor
 
 ## 8. LLM Configurability & Progress Feedback (7-step accurate count)
 
