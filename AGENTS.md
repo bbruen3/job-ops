@@ -1,112 +1,170 @@
-# Error/Logging/Sanitization Standards
+# JobOps — Agent Instructions
 
-This project uses strict operability and privacy defaults for server-side code.
+## Repo Overview
 
-## API Response Contract
+Monorepo (npm workspaces) — a self-hosted job-hunting platform. Express backend + React/Vite frontend, SQLite (Drizzle ORM), configurable LLM scoring & PDF resume generation.
 
-For all `/api/*` routes, return:
+## Workspaces
 
+| Package | Path | Entry | Purpose |
+|---------|------|-------|---------|
+| `orchestrator` | `orchestrator/` | `src/server/index.ts` / `src/client/main.tsx` | Main app — API + UI |
+| `shared` | `shared/` | `src/index.ts` | Shared types, extractor catalog, utilities |
+| `docs-site` | `docs-site/` | Docusaurus | User-facing documentation |
+| `*-extractor` | `extractors/*/` | `manifest.ts` or `src/manifest.ts` | Job board scrapers (auto-discovered) |
+
+Root `package.json` has `workspaces: ["orchestrator", "docs-site", "extractors/*", "shared"]`.
+
+## Critical Commands
+
+```bash
+# Dev (starts both server + client concurrently)
+npm --workspace orchestrator run dev
+#   API:          http://localhost:3001
+#   UI (Vite):    http://localhost:5173  (proxies /api, /pdfs, /stats → :3001)
+
+# Dev separately
+npm --workspace orchestrator run dev:server   # tsx watch src/server/index.ts
+npm --workspace orchestrator run dev:client   # vite --host
+
+# DB
+npm --workspace orchestrator run db:migrate   # sqlite + drizzle
+npm --workspace orchestrator run db:clear
+npm --workspace orchestrator run db:drop      # --drop flag
+
+# Pipeline (manual run)
+npm --workspace orchestrator run pipeline:run
+
+# Type checks (one-shot — run these BEFORE Biome)
+npm run check:types:shared                                    # shared/
+npm --workspace orchestrator run check:types                  # orchestrator/
+npm --workspace gradcracker-extractor run check:types         # extractors
+npm --workspace ukvisajobs-extractor run check:types
+
+# Lint + format (Biome 2.3.12)
+./orchestrator/node_modules/.bin/biome ci .                   # CI check (lint + format)
+./orchestrator/node_modules/.bin/biome check --write .        # lint auto-fix
+./orchestrator/node_modules/.bin/biome format --write .       # format auto-fix
+
+# Tests
+npm --workspace orchestrator run test:run                     # vitest run
+npm --workspace orchestrator run test                         # vitest (watch)
+
+# Build (client for production)
+npm --workspace orchestrator run build:client                 # vite build → dist/client/
+```
+
+## Path Aliases (tsconfig — enforced by Biome)
+
+Use these instead of relative imports. Biome will error on violations.
+
+| Alias | Resolves to | Use for |
+|-------|-------------|---------|
+| `@/*` | `orchestrator/src/*` | Anything in orchestrator src |
+| `@server/*` | `src/server/*` | Server modules |
+| `@infra/*` | `src/server/infra/*` | Logger, SSE, HTTP utils, sanitize |
+| `@client/*` | `src/client/*` | React UI modules |
+| `@shared/*` | `../shared/src/*` | Shared types & utilities |
+
+## Architecture Patterns
+
+### Extractor System
+
+Each `extractors/*/` directory has a `manifest.ts` (or `src/manifest.ts`) exporting an `ExtractorManifest` that implements `run(context)`. The orchestrator auto-discovers them at startup via `discovery.ts`. No manual registration needed.
+
+Contract: `ExtractorManifest { id, displayName, providesSources[], run(context) → { success, jobs[] } }`
+
+Add a new source:
+1. Add source ID to `shared/src/extractors/index.ts` (`EXTRACTOR_SOURCE_IDS` + `EXTRACTOR_SOURCE_METADATA`)
+2. Create `extractors/<name>/manifest.ts`
+3. The registry picks it up automatically (warning if catalog has no manifest, error in production if strict mode)
+
+### Pipeline Flow
+
+`src/server/pipeline/orchestrator.ts`: discoverJobs → importJobs → scoreJobs → selectJobs → processJobs
+
+### API Response Contract
+
+All `/api/*` routes:
 - Success: `{ ok: true, data, meta?: { requestId } }`
 - Error: `{ ok: false, error: { code, message, details? }, meta: { requestId } }`
 
-Use consistent status/code mapping:
+Status/code mapping:
+- `400 INVALID_REQUEST` / `401 UNAUTHORIZED` / `403 FORBIDDEN` / `404 NOT_FOUND`
+- `408 REQUEST_TIMEOUT` / `409 CONFLICT` / `422 UNPROCESSABLE_ENTITY`
+- `500 INTERNAL_ERROR` / `502 UPSTREAM_ERROR` / `503 SERVICE_UNAVAILABLE`
 
-- `400 INVALID_REQUEST`
-- `401 UNAUTHORIZED`
-- `403 FORBIDDEN`
-- `404 NOT_FOUND`
-- `408 REQUEST_TIMEOUT`
-- `409 CONFLICT`
-- `422 UNPROCESSABLE_ENTITY`
-- `500 INTERNAL_ERROR`
-- `502 UPSTREAM_ERROR`
-- `503 SERVICE_UNAVAILABLE`
+Use `ok()`/`fail()` from `@infra/http` — they handle request ID plumbing and sanitization.
 
-## Correlation IDs
+### Correlation IDs
 
-- Honor inbound `x-request-id` when present; otherwise generate one.
-- Always return `x-request-id` header.
-- Include request ID in API responses (`meta.requestId`) and logs.
-- Propagate context into async flows (especially pipeline run and per-job work) so logs include `pipelineRunId` / `jobId` when available.
+- Honor inbound `x-request-id`; otherwise generate one (UUID)
+- Always return `x-request-id` header
+- Include in API responses (`meta.requestId`) and logs
+- Propagate context into async flows (pipeline runs, per-job work) so logs include `pipelineRunId` / `jobId`
 
-## Logging Rules
+## Logging
 
-- Use the shared logger wrapper (`infra/logger.ts`) in core server paths.
-- Do not add direct `console.log`, `console.warn`, or `console.error` in core paths.
-- Log structured objects, not free-form dumps.
-- Include useful context fields (e.g. `requestId`, `pipelineRunId`, `jobId`, `route`, `status`).
+- Use the shared logger (`@infra/logger` Logger class) in core server paths
+- No direct `console.log`/`warn`/`error` in core paths (the Logger internally uses console.* with structured JSON)
+- Log structured objects, not free-form text
+- Include context fields: `requestId`, `pipelineRunId`, `jobId`, `route`, `status`
 
-## SSE Standards
+## SSE
 
-- Use centralized SSE helpers by default.
-- Server: use `orchestrator/src/server/infra/sse.ts` for setup, data writes, comments, and heartbeats.
-- Client (`EventSource`): use `orchestrator/src/client/lib/sse.ts` for subscription/open/message/error plumbing.
-- Do not duplicate raw SSE setup (`Content-Type`, `Connection`, heartbeat loops, or ad-hoc `JSON.parse` event parsing) when these helpers apply.
-- Keep feature payload types domain-local (pipeline, ghostwriter, bulk actions), but reuse shared transport plumbing.
+- **Server**: use `@infra/sse` (`setupSse`, `writeSseData`, `writeSseComment`, `startSseHeartbeat`)
+- **Client**: use `@client/lib/sse` (`subscribeToEventSource`)
+- Do not duplicate raw SSE setup (`Content-Type`, `Connection`, heartbeat loops, ad-hoc JSON.parse)
 
 ## Redaction and Sanitization
 
-- Always sanitize objects before logging or returning in error `details`.
-- Redact sensitive keys by default (`authorization`, `cookie`, `password`, `secret`, `token`, `apiKey`, etc.).
-- Truncate large payloads and long strings.
-- Do not throw/log raw upstream response bodies, full webhook bodies, or large `JSON.stringify(...)` blobs.
+- Always sanitize before logging or returning in error `details` (`sanitizeUnknown` from `@infra/sanitize`)
+- Redacted keys: `authorization`, `cookie`, `password`, `secret`, `token`, `apiKey`, etc.
+- Truncates strings at 800 chars, depth at 5 levels, arrays at 30 items
+- Do not throw/log raw upstream response bodies, full webhook bodies, or large `JSON.stringify(...)` blobs
+- Webhooks: send minimal whitelisted payloads by default
+- LLM prompts: send only required profile/job fields; avoid unnecessary PII
 
-## Webhook and LLM Payload Defaults
+## Testing Patterns
 
-- Webhooks: send minimal whitelisted payloads by default.
-- LLM prompts: send only required profile/job fields; avoid unnecessary PII.
-- Document external payload behavior when adding new integrations.
+- Vitest (globals mode). Run with `npm --workspace orchestrator run test:run`
+- Tests use `describe.sequential` (not `describe`) for API route tests (shared SQLite)
+- API tests use `startServer()` / `stopServer()` from `./test-utils.ts` which:
+  - Creates a temp directory for SQLite (`DATA_DIR`)
+  - Isolates env vars (clears sensitive keys)
+  - Mocks pipeline, scorer, profile, visa sponsors
+  - Returns ephemeral `server`, `baseUrl`, `closeDb`, `tempDir`
+- Test files co-located with source: `src/**/*.test.ts`
+- Vite config includes test patterns: `src/**/*.test.ts`, `shared/src/**/*.test.ts`, `extractors/**/tests/**/*.test.ts`
 
-## PR Checklist (Routes/Services)
+## CI Parity (run before marking work complete)
 
-- API responses follow `{ ok, data/error, meta.requestId }`.
-- Status/code mapping is correct and consistent.
-- Request/correlation IDs appear in logs and async workflows.
-- No raw sensitive payload logging or raw upstream body throws.
-- New/changed webhook or LLM payloads are sanitized and documented.
+```bash
+./orchestrator/node_modules/.bin/biome ci .                      # lint + format check
+npm run check:types:shared                                       # shared types
+npm --workspace orchestrator run check:types                     # orchestrator types
+npm --workspace gradcracker-extractor run check:types            # extractor types
+npm --workspace ukvisajobs-extractor run check:types
+npm --workspace orchestrator run build:client                    # vite build
+npm --workspace orchestrator run test:run                        # vitest
+```
 
-## Documentation Standards (Condensed)
+If tests fail with a `better-sqlite3` Node ABI mismatch:
+```bash
+npm --workspace orchestrator rebuild better-sqlite3
+```
 
-When adding or updating user-facing docs:
+CI runs on Node 22. Verify with Node 22 if local behavior differs.
 
-- Use this feature-page structure:
-  1. **What it is**
-  2. **Why it exists**
-  3. **How to use it**
-  4. **Common problems**
-  5. **Related pages**
-- Include frontmatter keys: `id`, `title`, `description`, `sidebar_position`.
-- Prefer concrete, step-by-step instructions over abstract explanation.
-- Include copy-pasteable examples where relevant.
-- State defaults and constraints explicitly.
-- Link related docs with `/docs/...` URLs.
-- Any user-visible behavior change should include corresponding docs updates.
+## Environment
 
-## Validation / Verification
+- `.env` loaded from `cwd` or parent directory (via `dotenv` in `config/env.ts`)
+- Node version pinned via Volta: `22.22.1`
+- Optional Basic Auth via `BASIC_AUTH_USER`/`BASIC_AUTH_PASSWORD` (write operations only; reads public by default)
+- `EXTRACTOR_REGISTRY_STRICT=1` to fail on catalog/manifest mismatches outside production
+- `LOG_LEVEL` for server logging verbosity (default `info`)
+- `DEMO_MODE=true` to skip visa sponsors init and return demo PDFs
 
-Before marking work complete, verify changes with the same checks used by CI.
+## Skills
 
-### Required CI-parity checks
-
-Run from repository root:
-
-1. `./orchestrator/node_modules/.bin/biome ci .`
-2. `npm run check:types:shared`
-3. `npm --workspace orchestrator run check:types`
-4. `npm --workspace gradcracker-extractor run check:types`
-5. `npm --workspace ukvisajobs-extractor run check:types`
-6. `npm --workspace orchestrator run build:client`
-7. `npm --workspace orchestrator run test:run`
-
-### Native module note (better-sqlite3)
-
-If tests fail with a Node ABI mismatch for `better-sqlite3`, rebuild it before running tests:
-
-- `npm --workspace orchestrator rebuild better-sqlite3`
-
-CI runs on Node 22. If local behavior differs, verify with Node 22 before concluding a change is valid.
-
-### Scope-specific checks
-
-- For focused changes, run targeted tests first (for touched files/modules), then still run the full CI-parity list above before finalizing.
-- A change is considered valid only when all required checks pass without ignored failures.
+Design/motion/UX skills live in `.agents/skills/` and `.claude/skills/`. Load them via the `skill` tool when tasks match (animate, critique, colorize, etc.).
