@@ -64,18 +64,18 @@
 
 ## 7. ATS-Optimized Resume Builder (7-step pipeline, separate artifact)
 
-- [ ] 7.1 Port career-ops `normalizeTextForATS()` to TypeScript (Unicode→ASCII: em-dashes, smart quotes, zero-width chars, non-breaking spaces)
-- [ ] 7.2 Implement JD keyword extraction: LLM call to extract 15-20 keyword phrases from job description (step 1/7)
-- [ ] 7.3 Implement open-ended role classification: LLM call to produce RoleClassification with concrete, matchable emphasisAreas (step 2/7)
-- [ ] 7.4 Implement Professional Summary rewrite: LLM call to inject top 5 JD keywords into existing summary (step 3/7)
-- [ ] 7.5 Implement project selection using emphasisAreas substring matching against project descriptions (step 4/7)
-- [ ] 7.6 Implement experience bullet reordering: LLM call to reorder bullets within each role by JD relevance (step 5/7)
-- [ ] 7.7 Implement competency grid generation: LLM call to produce 6-8 keyword phrases from JD requirements (step 6/7)
-- [ ] 7.8 Implement keyword injection: LLM call to reword existing bullets using JD vocabulary (step 7/7)
-- [ ] 7.9 Implement post-generation diff verification with length floor: tokens ≥ 4 chars use fuzzy match (Levenshtein ≤ 2), tokens < 4 chars use exact match only
-- [ ] 7.10 Implement separate artifact storage: per-job tailored artifact with metadata (keywords, classification, diff, PDF path)
-- [ ] 7.11 Verify base Resume Studio document is NOT modified by tailoring
-- [ ] 7.12 Add `modelResumeEnhance` per-task model override to `LlmService`
+- [x] 7.1 Port career-ops `normalizeTextForATS()` to TypeScript (Unicode→ASCII: em-dashes, smart quotes, zero-width chars, non-breaking spaces)
+- [x] 7.2 Implement JD keyword extraction: LLM call to extract 15-20 keyword phrases from job description (step 1/7)
+- [x] 7.3 Implement open-ended role classification: LLM call to produce RoleClassification with concrete, matchable emphasisAreas (step 2/7)
+- [x] 7.4 Implement Professional Summary rewrite: LLM call to inject top 5 JD keywords into existing summary (step 3/7)
+- [x] 7.5 Implement project selection using emphasisAreas substring matching against project descriptions (step 4/7)
+- [x] 7.6 Implement experience bullet reordering: LLM call to reorder bullets within each role by JD relevance (step 5/7)
+- [x] 7.7 Implement competency grid generation: LLM call to produce 6-8 keyword phrases from JD requirements (step 6/7)
+- [x] 7.8 Implement keyword injection: LLM call to reword existing bullets using JD vocabulary (step 7/7)
+- [x] 7.9 Implement post-generation diff verification with length floor: tokens ≥ 4 chars use fuzzy match (Levenshtein ≤ 2), tokens < 4 chars use exact match only
+- [x] 7.10 Implement separate artifact storage: per-job tailored artifact with metadata (keywords, classification, diff, PDF path)
+- [x] 7.11 Verify base Resume Studio document is NOT modified by tailoring
+- [x] 7.12 Add `modelResumeEnhance` per-task model override to `LlmService`
 - [ ] 7.13 Wire ATS optimization into per-job tailoring flow ("Tailor for this job" trigger)
 - [ ] 7.14 Add paper format detection: parse company location from JD, select letter (US/Canada) or A4 (rest of world)
 - [ ] 7.15 Add unit tests for ATS normalization, keyword extraction, role classification, and diff verification with length floor
@@ -96,9 +96,9 @@
 
 ## 9. Catalog Entries & Documentation
 
-- [ ] 9.1 Add Greenhouse companies to Watchlist catalog: Temporal, Scale AI, Notion, Retool, Figma, Loom
-- [ ] 9.2 Add Lever companies to Watchlist catalog: Fly.io, PlanetScale, Cohere
-- [ ] 9.3 Add Ashby companies to Watchlist catalog: Railway, Mistral, Perplexity
+- [x] 9.1 Add Greenhouse companies to Watchlist catalog: Temporal, Scale AI, Notion, Retool, Figma, Loom
+- [x] 9.2 Add Lever companies to Watchlist catalog: Fly.io, PlanetScale, Cohere
+- [x] 9.3 Add Ashby companies to Watchlist catalog: Railway, Mistral, Perplexity
 - [ ] 9.4 Update Watchlist feature docs with new source types
 - [ ] 9.5 Update Resume Studio docs with ATS optimization mode, per-job trigger, separate artifact model
 - [ ] 9.6 Update LLM Configuration docs with local model setup guide
