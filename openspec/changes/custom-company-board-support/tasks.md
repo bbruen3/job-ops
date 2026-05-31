@@ -99,7 +99,7 @@
 - [x] 9.1 Add Greenhouse companies to Watchlist catalog: Temporal, Scale AI, Notion, Retool, Figma, Loom
 - [x] 9.2 Add Lever companies to Watchlist catalog: Fly.io, PlanetScale, Cohere
 - [x] 9.3 Add Ashby companies to Watchlist catalog: Railway, Mistral, Perplexity
-- [ ] 9.4 Update Watchlist feature docs with new source types
-- [ ] 9.5 Update Resume Studio docs with ATS optimization mode, per-job trigger, separate artifact model
-- [ ] 9.6 Update LLM Configuration docs with local model setup guide
-- [ ] 9.7 Update README with new ATS adapter support and resume builder features
+- [x] 9.4 Update Watchlist feature docs with new source types
+- [x] 9.5 Update Resume Studio docs with ATS optimization mode, per-job trigger, separate artifact model
+- [x] 9.6 Update LLM Configuration docs with local model setup guide
+- [x] 9.7 Update README with new ATS adapter support and resume builder features
