@@ -1156,6 +1156,59 @@ jobsRouter.post("/:id/summarize", async (req: Request, res: Response) => {
 });
 
 /**
+ * POST /api/jobs/:id/ats-tailor - ATS-optimized resume tailoring with SSE progress
+ */
+jobsRouter.post("/:id/ats-tailor", async (req: Request, res: Response) => {
+  try {
+    const job = await jobsRepo.getJobById(req.params.id);
+    if (!job) {
+      return fail(res, notFound("Job not found"));
+    }
+
+    const jobDescription = job.description || job.jobDescription || "";
+    if (!jobDescription) {
+      return fail(res, badRequest("Job has no description"));
+    }
+
+    // Get the current profile for tailoring
+    const profile = await settingsRepo.getProfile();
+    if (!profile) {
+      return fail(res, badRequest("No resume profile found"));
+    }
+
+    // Set up SSE
+    setupSse(res, { disableBuffering: true, flushHeaders: true });
+    const stopHeartbeat = startSseHeartbeat(res);
+
+    try {
+      // Import and run the tailoring pipeline with SSE events
+      const { runTailoringWithSse } = await import(
+        "@server/services/tailoring-sse"
+      );
+
+      await runTailoringWithSse({
+        res,
+        jobDescription,
+        profile,
+        jobId: job.id,
+      });
+    } finally {
+      stopHeartbeat();
+      res.end();
+    }
+  } catch (error) {
+    logger.error("ATS tailoring failed", { error, jobId: req.params.id });
+    if (!res.writableEnded) {
+      writeSseData(res, {
+        type: "tailoring.failed",
+        error: error instanceof Error ? error.message : String(error),
+      });
+      res.end();
+    }
+  }
+});
+
+/**
  * POST /api/jobs/:id/check-sponsor - Check if employer is a visa sponsor
  */
 jobsRouter.post("/:id/check-sponsor", async (req: Request, res: Response) => {
