@@ -10,17 +10,17 @@
 
 ## 3. Build Per-Purpose LLM Config UI Component
 
-- [ ] 3.1 Create `PerPurposeLlmConfigSection.tsx` component with a card per purpose (scoring, tailoring, project selection, ghostwriter, resume enhancement)
-- [ ] 3.2 Each card shows: provider dropdown, base URL input, API key input, model input
-- [ ] 3.3 Show inherited defaults in muted text when a field is empty
-- [ ] 3.4 Wire form fields to `llmPurposeOverrides.{purpose}.provider`, `.baseUrl`, `.model` and `llmPurposeApiKeys.{purpose}`
-- [ ] 3.5 Add provider change logic: changing provider resets base URL and model fields (same pattern as global config)
+- [x] 3.1 Create `PerPurposeLlmConfigSection.tsx` component with a card per purpose (scoring, tailoring, project selection, ghostwriter, resume enhancement)
+- [x] 3.2 Each card shows: provider dropdown, base URL input, API key input, model input
+- [x] 3.3 Show inherited defaults in muted text when a field is empty
+- [x] 3.4 Wire form fields to `llmPurposeOverrides.{purpose}.provider`, `.baseUrl`, `.model` and `llmPurposeApiKeys.{purpose}`
+- [x] 3.5 Add provider change logic: changing provider resets base URL and model fields (same pattern as global config)
 
 ## 4. Integrate into Settings Page
 
-- [ ] 4.1 Add the new section to the Settings page layout alongside the existing Model section
-- [ ] 4.2 Add `llmPurposeOverrides` and `llmPurposeApiKeys` to the `SECTION_FIELD_MAP` in `SettingsPage.tsx`
-- [ ] 4.3 Add dirty/error tracking for the per-purpose fields
+- [x] 4.1 Add the new section to the Settings page layout alongside the existing Model section
+- [x] 4.2 Add `llmPurposeOverrides` and `llmPurposeApiKeys` to the `SECTION_FIELD_MAP` in `SettingsPage.tsx`
+- [x] 4.3 Add dirty/error tracking for the per-purpose fields
 - [ ] 4.4 Test that saving per-purpose overrides persists correctly and reloads on page refresh
 
 ## 5. Backward Compatibility & Cleanup

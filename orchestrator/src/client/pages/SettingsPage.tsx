@@ -307,7 +307,6 @@ const SECTION_FIELD_MAP: Record<
   ],
   "per-purpose-llm": [
     "llmPurposeOverrides",
-    "llmPurposeApiKeyHints",
   ],
   chat: [
     "chatStyleTone",
@@ -487,6 +486,8 @@ const mapSettingsToForm = (data: AppSettings): UpdateSettingsInput => ({
     data.ghostwriterSystemPromptTemplate.value ?? "",
   tailoringPromptTemplate: data.tailoringPromptTemplate.value ?? "",
   scoringPromptTemplate: data.scoringPromptTemplate.value ?? "",
+  llmPurposeOverrides: data.llmPurposeOverrides.override ?? null,
+  llmPurposeApiKeyHints: null,
 });
 
 const normalizeString = (value: string | null | undefined) => {
@@ -1235,6 +1236,7 @@ export const SettingsPage: React.FC = () => {
           normalizeString(data.scoringPromptTemplate),
           promptTemplates.scoringPromptTemplate.default,
         ),
+        llmPurposeOverrides: data.llmPurposeOverrides ?? null,
         ...envPayload,
       };
 
