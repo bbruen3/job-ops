@@ -86,13 +86,13 @@
 - [x] 8.2 Add `modelResumeEnhance` setting to settings schema (`shared/src/types/settings.ts`)
 - [x] 8.3 Add per-task model override UI in Settings → LLM Configuration
 - [x] 8.4 Add "Test Connection" button in Settings that sends a test request to configured endpoint
-- [ ] 8.5 Add LLM usage tracking: input tokens, output tokens, model, task type per call
-- [ ] 8.6 Add Settings → LLM Usage view showing total tokens, estimated cost, breakdown by task
-- [ ] 8.7 Add graceful degradation: clear error messages when local model is unavailable
-- [ ] 8.8 Add fallback for models lacking structured output (text parsing with warnings)
+- [x] 8.5 Add LLM usage tracking: input tokens, output tokens, model, task type per call
+- [x] 8.6 Add Settings → LLM Usage view showing total tokens, estimated cost, breakdown by task
+- [x] 8.7 Add graceful degradation: clear error messages when local model is unavailable
+- [x] 8.8 Add fallback for models lacking structured output (text parsing with warnings)
 - [x] 8.9 Implement SSE progress events for tailoring pipeline: tailoring.started (total: 7), tailoring.step.started, tailoring.step.completed, tailoring.step.failed, tailoring.completed
 - [x] 8.10 Verify total: 7 matches actual pipeline steps (keyword_extraction, role_classification, summary_rewrite, project_selection, bullet_reordering, competency_grid, keyword_injection)
-- [ ] 8.11 Add tailoring progress UI: step name, completed steps, estimated time remaining, step results
+- [x] 8.11 Add tailoring progress UI: step name, completed steps, estimated time remaining, step results
 
 ## 9. Catalog Entries & Documentation
 
