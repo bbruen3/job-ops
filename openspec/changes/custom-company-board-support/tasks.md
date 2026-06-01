@@ -84,8 +84,8 @@
 
 - [x] 8.1 Verify existing `LlmService` supports all required providers (OpenAI, OpenRouter, Ollama, LM Studio, Gemini, OpenAI-compatible)
 - [x] 8.2 Add `modelResumeEnhance` setting to settings schema (`shared/src/types/settings.ts`)
-- [ ] 8.3 Add per-task model override UI in Settings → LLM Configuration
-- [ ] 8.4 Add "Test Connection" button in Settings that sends a test request to configured endpoint
+- [x] 8.3 Add per-task model override UI in Settings → LLM Configuration
+- [x] 8.4 Add "Test Connection" button in Settings that sends a test request to configured endpoint
 - [ ] 8.5 Add LLM usage tracking: input tokens, output tokens, model, task type per call
 - [ ] 8.6 Add Settings → LLM Usage view showing total tokens, estimated cost, breakdown by task
 - [ ] 8.7 Add graceful degradation: clear error messages when local model is unavailable

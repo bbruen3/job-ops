@@ -290,6 +290,7 @@ const SECTION_FIELD_MAP: Record<
     "modelScorer",
     "modelTailoring",
     "modelProjectSelection",
+    "modelResumeEnhance",
   ],
   chat: [
     "chatStyleTone",

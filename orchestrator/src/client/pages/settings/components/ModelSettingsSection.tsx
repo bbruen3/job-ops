@@ -14,6 +14,7 @@ import type { UpdateSettingsInput } from "@shared/settings-schema.js";
 import type React from "react";
 import { useDeferredValue, useEffect, useRef, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
+import { Button } from "@/components/ui/button";
 import { SearchableDropdown } from "@/components/ui/searchable-dropdown";
 import {
   Select,
@@ -40,6 +41,11 @@ export const ModelSettingsSection: React.FC<ModelSettingsSectionProps> = ({
   const [availableModels, setAvailableModels] = useState<string[]>([]);
   const [isLoadingModels, setIsLoadingModels] = useState(false);
   const [modelsError, setModelsError] = useState<string | null>(null);
+  const [isTestingConnection, setIsTestingConnection] = useState(false);
+  const [testConnectionResult, setTestConnectionResult] = useState<{
+    success: boolean;
+    message: string;
+  } | null>(null);
   const {
     effective,
     default: defaultModel,
@@ -66,6 +72,7 @@ export const ModelSettingsSection: React.FC<ModelSettingsSectionProps> = ({
   const modelScorerValue = watch("modelScorer") ?? "";
   const modelTailoringValue = watch("modelTailoring") ?? "";
   const modelProjectSelectionValue = watch("modelProjectSelection") ?? "";
+  const modelResumeEnhanceValue = watch("modelResumeEnhance") ?? "";
   const providerDefaultModel = getDefaultModelForProvider(
     selectedProvider,
     selectedProvider === llmProvider ? defaultModel : undefined,
@@ -96,6 +103,7 @@ export const ModelSettingsSection: React.FC<ModelSettingsSectionProps> = ({
     setValue("modelScorer", "", { shouldDirty: true });
     setValue("modelTailoring", "", { shouldDirty: true });
     setValue("modelProjectSelection", "", { shouldDirty: true });
+    setValue("modelResumeEnhance", "", { shouldDirty: true });
   }, [selectedProvider, setValue]);
 
   useEffect(() => {
@@ -162,10 +170,13 @@ export const ModelSettingsSection: React.FC<ModelSettingsSectionProps> = ({
   const selectedScoringModel = modelScorerValue.trim();
   const selectedTailoringModel = modelTailoringValue.trim();
   const selectedProjectSelectionModel = modelProjectSelectionValue.trim();
+  const selectedResumeEnhanceModel = modelResumeEnhanceValue.trim();
   const scoringModel = selectedScoringModel || previewDefaultModel;
   const tailoringModel = selectedTailoringModel || previewDefaultModel;
   const projectSelectionModel =
     selectedProjectSelectionModel || previewDefaultModel;
+  const resumeEnhanceModel =
+    selectedResumeEnhanceModel || previewDefaultModel;
   const modelHelper = supportsModelSuggestions
     ? !hasAvailableApiKey
       ? `Add or save a ${providerConfig.label} API key to load available models.`
@@ -201,6 +212,35 @@ export const ModelSettingsSection: React.FC<ModelSettingsSectionProps> = ({
     emptyValue: "",
     fallbackValue: modelProjectSelectionValue.trim(),
   });
+  const resumeEnhanceModelOptions = buildModelOptions({
+    models: availableModels,
+    emptyLabel: "Inherit default model",
+    emptyValue: "",
+    fallbackValue: modelResumeEnhanceValue.trim(),
+  });
+
+  const handleTestConnection = async () => {
+    setIsTestingConnection(true);
+    setTestConnectionResult(null);
+    try {
+      const result = await api.validateLlm({
+        provider: selectedProvider,
+        baseUrl: showBaseUrl ? (llmBaseUrlValue ?? "").trim() || undefined : undefined,
+        apiKey: showApiKey ? (llmApiKeyValue ?? "").trim() || undefined : undefined,
+      });
+      setTestConnectionResult({
+        success: result.valid,
+        message: result.message ?? (result.valid ? "Connection successful" : "Connection failed"),
+      });
+    } catch (error) {
+      setTestConnectionResult({
+        success: false,
+        message: error instanceof Error ? error.message : "Test failed",
+      });
+    } finally {
+      setIsTestingConnection(false);
+    }
+  };
 
   return (
     <SettingsSectionFrame mode={layoutMode} title="Model" value="model">
@@ -269,6 +309,22 @@ export const ModelSettingsSection: React.FC<ModelSettingsSectionProps> = ({
               />
             )}
           </div>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            disabled={isLoading || isSaving || isTestingConnection}
+            onClick={handleTestConnection}
+          >
+            {isTestingConnection ? "Testing..." : "Test Connection"}
+          </Button>
+          {testConnectionResult && (
+            <p
+              className={`text-xs ${testConnectionResult.success ? "text-green-600" : "text-destructive"}`}
+            >
+              {testConnectionResult.message}
+            </p>
+          )}
         </div>
 
         <Separator />
@@ -442,6 +498,46 @@ export const ModelSettingsSection: React.FC<ModelSettingsSectionProps> = ({
                     <span className="font-mono">{projectSelectionModel}</span>
                   </div>
                 </div>
+
+                <div className="space-y-2">
+                  <label
+                    htmlFor="modelResumeEnhance"
+                    className="text-sm font-medium"
+                  >
+                    Resume Enhancement Model
+                  </label>
+                  <Controller
+                    name="modelResumeEnhance"
+                    control={control}
+                    render={({ field }) => (
+                      <SearchableDropdown
+                        inputId="modelResumeEnhance"
+                        value={field.value ?? ""}
+                        options={resumeEnhanceModelOptions}
+                        onValueChange={field.onChange}
+                        placeholder={
+                          previewDefaultModel || "Inherit default model"
+                        }
+                        searchPlaceholder="Search models..."
+                        emptyText="No models found."
+                        ariaLabel="Resume Enhancement Model"
+                        disabled={isLoading || isSaving || isLoadingModels}
+                        triggerClassName="h-9 w-full justify-between rounded-md border border-input bg-transparent px-3 text-sm font-normal shadow-sm"
+                        contentClassName="w-[var(--radix-popover-trigger-width)] border-border bg-popover p-0"
+                        listClassName="max-h-64"
+                      />
+                    )}
+                  />
+                  {errors.modelResumeEnhance?.message && (
+                    <p className="text-xs text-destructive">
+                      {errors.modelResumeEnhance.message as string}
+                    </p>
+                  )}
+                  <div className="text-xs text-muted-foreground">
+                    Current:{" "}
+                    <span className="font-mono">{resumeEnhanceModel}</span>
+                  </div>
+                </div>
               </>
             ) : (
               <>
@@ -472,6 +568,17 @@ export const ModelSettingsSection: React.FC<ModelSettingsSectionProps> = ({
                     errors.modelProjectSelection?.message as string | undefined
                   }
                   current={projectSelectionModel}
+                />
+
+                <SettingsInput
+                  label="Resume Enhancement Model"
+                  inputProps={register("modelResumeEnhance")}
+                  placeholder={previewDefaultModel || "inherit"}
+                  disabled={isLoading || isSaving}
+                  error={
+                    errors.modelResumeEnhance?.message as string | undefined
+                  }
+                  current={resumeEnhanceModel}
                 />
               </>
             )}
