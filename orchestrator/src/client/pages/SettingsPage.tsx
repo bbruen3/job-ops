@@ -20,6 +20,7 @@ import { DangerZoneSection } from "@client/pages/settings/components/DangerZoneS
 import { DisplaySettingsSection } from "@client/pages/settings/components/DisplaySettingsSection";
 import { EnvironmentSettingsSection } from "@client/pages/settings/components/EnvironmentSettingsSection";
 import { ModelSettingsSection } from "@client/pages/settings/components/ModelSettingsSection";
+import { PerPurposeLlmConfigSection } from "@client/pages/settings/components/PerPurposeLlmConfigSection";
 import { PromptTemplatesSection } from "@client/pages/settings/components/PromptTemplatesSection";
 import { ReactiveResumeSection } from "@client/pages/settings/components/ReactiveResumeSection";
 import { ScoringSettingsSection } from "@client/pages/settings/components/ScoringSettingsSection";
@@ -177,6 +178,18 @@ const SETTINGS_NAV_GROUPS: SettingsNavGroup[] = [
         searchTerms: ["llm", "provider", "openai", "gemini", "ollama"],
       },
       {
+        id: "per-purpose-llm",
+        label: "Per-Purpose LLM",
+        description: "Override provider, base URL, API key, or model per task.",
+        searchTerms: [
+          "scoring",
+          "tailoring",
+          "project",
+          "ghostwriter",
+          "resume",
+        ],
+      },
+      {
         id: "chat",
         label: "Writing Style",
         description: "Tone, language, presets, and writing constraints.",
@@ -291,6 +304,10 @@ const SECTION_FIELD_MAP: Record<
     "modelTailoring",
     "modelProjectSelection",
     "modelResumeEnhance",
+  ],
+  "per-purpose-llm": [
+    "llmPurposeOverrides",
+    "llmPurposeApiKeyHints",
   ],
   chat: [
     "chatStyleTone",
@@ -1535,6 +1552,16 @@ export const SettingsPage: React.FC = () => {
     case "model":
       activeSectionContent = (
         <ModelSettingsSection
+          values={model}
+          isLoading={isLoading}
+          isSaving={isSaving}
+          layoutMode="panel"
+        />
+      );
+      break;
+    case "per-purpose-llm":
+      activeSectionContent = (
+        <PerPurposeLlmConfigSection
           values={model}
           isLoading={isLoading}
           isSaving={isSaving}

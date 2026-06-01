@@ -589,6 +589,37 @@ export const settingsRegistry = {
     schema: z.string().trim().max(200),
   },
 
+  // --- Per-Purpose LLM Overrides (JSON-serialized) ---
+  llmPurposeOverrides: {
+    kind: "typed" as const,
+    schema: z.record(
+      z.enum(["scoring", "tailoring", "projectSelection", "ghostwriter", "resumeEnhance"]),
+      z.object({
+        provider: z.string().trim().max(200).nullable().optional(),
+        baseUrl: z.string().trim().max(2000).nullable().optional(),
+        model: z.string().trim().max(200).nullable().optional(),
+      }),
+    ),
+    default: () => ({}),
+    parse: (raw: string | undefined): Record<string, unknown> | null => {
+      if (!raw) return null;
+      try {
+        const parsed = JSON.parse(raw);
+        return typeof parsed === "object" && !Array.isArray(parsed)
+          ? parsed
+          : null;
+      } catch {
+        return null;
+      }
+    },
+    serialize: (
+      value: Record<string, unknown> | null | undefined,
+    ): string | null => {
+      if (!value || Object.keys(value).length === 0) return null;
+      return JSON.stringify(value);
+    },
+  },
+
   // --- Simple Strings ---
   rxresumeBaseResumeId: {
     kind: "string" as const,
@@ -666,6 +697,33 @@ export const settingsRegistry = {
     kind: "secret" as const,
     envKey: "WEBHOOK_SECRET",
     schema: z.string().trim().max(2000),
+  },
+
+  // --- JSON-Serialized Hints ---
+  llmPurposeApiKeyHints: {
+    kind: "typed" as const,
+    schema: z.record(
+      z.enum(["scoring", "tailoring", "projectSelection", "ghostwriter", "resumeEnhance"]),
+      z.string().nullable(),
+    ),
+    default: () => ({}),
+    parse: (raw: string | undefined): Record<string, string | null> | null => {
+      if (!raw) return null;
+      try {
+        const parsed = JSON.parse(raw);
+        return typeof parsed === "object" && !Array.isArray(parsed)
+          ? parsed
+          : null;
+      } catch {
+        return null;
+      }
+    },
+    serialize: (
+      value: Record<string, string | null> | null | undefined,
+    ): string | null => {
+      if (!value || Object.keys(value).length === 0) return null;
+      return JSON.stringify(value);
+    },
   },
 
   // --- Aliases ---

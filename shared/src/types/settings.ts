@@ -148,6 +148,36 @@ export interface DemoInfoResponse {
 export type Resolved<T> = { value: T; default: T; override: T | null };
 export type ModelResolved = { value: string; override: string | null };
 
+export const LLM_PURPOSE_VALUES = [
+  "scoring",
+  "tailoring",
+  "projectSelection",
+  "ghostwriter",
+  "resumeEnhance",
+] as const;
+export type LlmPurpose = (typeof LLM_PURPOSE_VALUES)[number];
+
+export type LlmPurposeOverride = {
+  provider?: string | null;
+  baseUrl?: string | null;
+  model?: string | null;
+};
+
+export type LlmPurposeOverrides = Partial<
+  Record<LlmPurpose, LlmPurposeOverride>
+>;
+
+export type LlmPurposeApiKeys = Partial<Record<LlmPurpose, string | null>>;
+export type LlmPurposeApiKeyHints = Partial<Record<LlmPurpose, string | null>>;
+
+export const LLM_PURPOSE_LABELS: Record<LlmPurpose, string> = {
+  scoring: "Scoring",
+  tailoring: "Tailoring",
+  projectSelection: "Project Selection",
+  ghostwriter: "Ghostwriter",
+  resumeEnhance: "Resume Enhancement",
+};
+
 export interface AppSettings {
   // Typed settings (Resolved):
   model: Resolved<string>;
@@ -195,6 +225,9 @@ export interface AppSettings {
   modelProjectSelection: ModelResolved;
   modelResumeEnhance: ModelResolved;
 
+  // Per-purpose LLM overrides (provider, baseUrl, model per purpose):
+  llmPurposeOverrides: Resolved<LlmPurposeOverrides>;
+
   // Simple strings:
   rxresumeBaseResumeId: string | null;
   rxresumeBaseResumeIdV4: string | null;
@@ -208,6 +241,7 @@ export interface AppSettings {
 
   // Secret hints:
   llmApiKeyHint: string | null;
+  llmPurposeApiKeyHints: LlmPurposeApiKeyHints;
   rxresumeApiKeyHint: string | null;
   rxresumePasswordHint: string | null;
   ukvisajobsPasswordHint: string | null;
