@@ -1012,6 +1012,7 @@ export async function cancelPipeline(): Promise<{
   }>("/pipeline/cancel", {
     method: "POST",
   });
+}
 
 export async function processJob(jobId: string, options?: {
   force?: boolean;
