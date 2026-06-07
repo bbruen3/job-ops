@@ -138,6 +138,11 @@ export async function runPipeline(
     let jobsDiscovered = 0;
     let jobsProcessed = 0;
     pipelineLogger.info("Starting pipeline run", {
+      pipelineRunMode: mergedConfig.pipelineRunMode,
+      enableCrawling: mergedConfig.enableCrawling,
+      enableScoring: mergedConfig.enableScoring,
+      enableImporting: mergedConfig.enableImporting,
+      enableAutoTailoring: mergedConfig.enableAutoTailoring,
       topN: mergedConfig.topN,
       minSuitabilityScore: mergedConfig.minSuitabilityScore,
       sources: mergedConfig.sources,
