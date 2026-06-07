@@ -21,6 +21,7 @@ import { DisplaySettingsSection } from "@client/pages/settings/components/Displa
 import { EnvironmentSettingsSection } from "@client/pages/settings/components/EnvironmentSettingsSection";
 import { ModelSettingsSection } from "@client/pages/settings/components/ModelSettingsSection";
 import { PerPurposeLlmConfigSection } from "@client/pages/settings/components/PerPurposeLlmConfigSection";
+import { PipelineSettingsSection } from "@client/pages/settings/components/PipelineSettingsSection";
 import { PromptTemplatesSection } from "@client/pages/settings/components/PromptTemplatesSection";
 import { ReactiveResumeSection } from "@client/pages/settings/components/ReactiveResumeSection";
 import { ScoringSettingsSection } from "@client/pages/settings/components/ScoringSettingsSection";
@@ -136,6 +137,7 @@ type SettingsSectionId =
   | "chat"
   | "prompt-templates"
   | "scoring"
+  | "pipeline"
   | "reactive-resume"
   | "webhooks"
   | "tracer-links"
@@ -190,10 +192,26 @@ const SETTINGS_NAV_GROUPS: SettingsNavGroup[] = [
         ],
       },
       {
-        id: "chat",
-        label: "Writing Style",
-        description: "Tone, language, presets, and writing constraints.",
-        searchTerms: ["ghostwriter", "language", "tone", "formality"],
+        id: "scoring",
+        label: "Scoring Settings",
+        description: "Score thresholds, salary penalty, and blocked companies.",
+        searchTerms: ["score", "salary", "penalty", "blocked", "auto-skip"],
+      },
+      {
+        id: "pipeline",
+        label: "Pipeline & Extractor",
+        description: "Search queries, locations, workplace types, and run mode.",
+        searchTerms: [
+          "search",
+          "terms",
+          "keywords",
+          "cities",
+          "location",
+          "remote",
+          "workplace",
+          "run mode",
+          "discovery",
+        ],
       },
       {
         id: "prompt-templates",
@@ -327,6 +345,12 @@ const SECTION_FIELD_MAP: Record<
     "autoSkipScoreThreshold",
     "blockedCompanyKeywords",
     "scoringInstructions",
+  ],
+  pipeline: [
+    "searchTerms",
+    "searchCities",
+    "workplaceTypes",
+    "pipelineRunMode",
   ],
   "reactive-resume": [
     "pdfRenderer",
@@ -673,6 +697,24 @@ const getDerivedSettings = (settings: AppSettings | null) => {
         default: settings?.scoringInstructions?.default ?? "",
       },
     },
+    pipeline: {
+      searchTerms: {
+        effective: settings?.searchTerms?.value ?? [],
+        default: settings?.searchTerms?.default ?? [],
+      },
+      searchCities: {
+        effective: settings?.searchCities?.value ?? "",
+        default: settings?.searchCities?.default ?? "",
+      },
+      workplaceTypes: {
+        effective: settings?.workplaceTypes?.value ?? ["remote", "hybrid", "onsite"],
+        default: settings?.workplaceTypes?.default ?? ["remote", "hybrid", "onsite"],
+      },
+      pipelineRunMode: {
+        effective: settings?.pipelineRunMode?.value ?? "automatic",
+        default: settings?.pipelineRunMode?.default ?? "automatic",
+      },
+    },
     promptTemplates: {
       ghostwriterSystemPromptTemplate: {
         effective: settings?.ghostwriterSystemPromptTemplate?.value ?? "",
@@ -872,6 +914,7 @@ export const SettingsPage: React.FC = () => {
     profileProjects,
     backup,
     scoring,
+    pipeline,
     promptTemplates,
   } = derived;
 
@@ -1224,6 +1267,32 @@ export const SettingsPage: React.FC = () => {
           normalizeString(data.scoringInstructions),
           scoring.scoringInstructions.default,
         ),
+        searchTerms: (() => {
+          const normalized = normalizeStringArray(data.searchTerms);
+          const normalizedDefault = normalizeStringArray(
+            pipeline.searchTerms.default,
+          );
+          return stringArraysEqual(normalized, normalizedDefault)
+            ? null
+            : normalized;
+        })(),
+        searchCities: nullIfSame(
+          normalizeString(data.searchCities),
+          pipeline.searchCities.default,
+        ),
+        workplaceTypes: (() => {
+          const normalized = normalizeStringArray(data.workplaceTypes);
+          const normalizedDefault = normalizeStringArray(
+            pipeline.workplaceTypes.default,
+          );
+          return stringArraysEqual(normalized, normalizedDefault)
+            ? null
+            : normalized;
+        })(),
+        pipelineRunMode: nullIfSame(
+          data.pipelineRunMode,
+          pipeline.pipelineRunMode.default,
+        ),
         ghostwriterSystemPromptTemplate: nullIfSame(
           normalizeString(data.ghostwriterSystemPromptTemplate),
           promptTemplates.ghostwriterSystemPromptTemplate.default,
@@ -1512,6 +1581,12 @@ export const SettingsPage: React.FC = () => {
           scoring.scoringInstructions.effective
           ? { label: "Customized", variant: "outline" as const }
           : { label: "Default rules", variant: "secondary" as const };
+      case "pipeline":
+        return pipeline.searchTerms.effective.length > 0 ||
+          pipeline.searchCities.effective ||
+          pipeline.workplaceTypes.effective.length < 3
+          ? { label: "Configured", variant: "outline" as const }
+          : { label: "Defaults", variant: "secondary" as const };
       case "reactive-resume":
         return hasRxResumeAccess
           ? { label: "Connected", variant: "outline" as const }
@@ -1595,6 +1670,16 @@ export const SettingsPage: React.FC = () => {
       activeSectionContent = (
         <ScoringSettingsSection
           values={scoring}
+          isLoading={isLoading}
+          isSaving={isSaving}
+          layoutMode="panel"
+        />
+      );
+      break;
+    case "pipeline":
+      activeSectionContent = (
+        <PipelineSettingsSection
+          values={pipeline}
           isLoading={isLoading}
           isSaving={isSaving}
           layoutMode="panel"

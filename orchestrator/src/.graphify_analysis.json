@@ -1,0 +1,2748 @@
+{
+  "communities": {
+    "0": [
+      "client_api_client_ts",
+      "client_apiclienterror",
+      "client_apiclienterror_constructor",
+      "client_approvepostapplicationinboxitem",
+      "client_canceljobchatrun",
+      "client_canceljobghostwriterrun",
+      "client_cancelpipeline",
+      "client_checksponsor",
+      "client_clearbasicauthcredentials",
+      "client_cleardatabase",
+      "client_components_manualimportflow_tsx",
+      "client_createjobchatthread",
+      "client_createmanualbackup",
+      "client_deletejobsbelowscore",
+      "client_deletejobsbystatus",
+      "client_deletejobstageevent",
+      "client_denypostapplicationinboxitem",
+      "client_describeaction",
+      "client_editjobghostwritermessage",
+      "client_encodebasicauth",
+      "client_fetchandparse",
+      "client_fetchapi",
+      "client_fetchjobfromurl",
+      "client_generatejobpdf",
+      "client_getbackups",
+      "client_getcachedbasicauthheader",
+      "client_getcachedbasicauthusername",
+      "client_getdemoinfo",
+      "client_getjob",
+      "client_getjobs",
+      "client_getjobsrevision",
+      "client_getjobstageevents",
+      "client_getjobtasks",
+      "client_getjobtracerlinks",
+      "client_getllmmodels",
+      "client_getpipelinestatus",
+      "client_getpostapplicationinbox",
+      "client_getpostapplicationrunmessages",
+      "client_getpostapplicationruns",
+      "client_getprofile",
+      "client_getprofileprojects",
+      "client_getprofilestatus",
+      "client_getresumeprojectscatalog",
+      "client_getrxresumeprojects",
+      "client_getrxresumes",
+      "client_getsettings",
+      "client_getsinglejobfromactionresult",
+      "client_gettraceranalytics",
+      "client_gettracerreadiness",
+      "client_getvisasponsororganization",
+      "client_getvisasponsorstatus",
+      "client_hasbasicauthprompthandler",
+      "client_importmanualjob",
+      "client_infermanualjob",
+      "client_isunauthorizedresponse",
+      "client_lib_sse_ts",
+      "client_listjobchatmessages",
+      "client_listjobchatthreads",
+      "client_listjobghostwritermessages",
+      "client_markasapplied",
+      "client_normalizeapiresponse",
+      "client_normalizeheaders",
+      "client_postapplicationgmailoauthexchange",
+      "client_postapplicationgmailoauthstart",
+      "client_postapplicationproviderconnect",
+      "client_postapplicationproviderdisconnect",
+      "client_postapplicationproviderstatus",
+      "client_postapplicationprovidersync",
+      "client_processjob",
+      "client_refreshprofile",
+      "client_regeneratejobchatmessage",
+      "client_requestbasicauthcredentials",
+      "client_requestbasicauthheader",
+      "client_rescorejob",
+      "client_resetapiclientauthfortests",
+      "client_resetjobghostwriterconversation",
+      "client_runjobaction",
+      "client_runpipeline",
+      "client_runpostapplicationinboxaction",
+      "client_searchvisasponsors",
+      "client_sendjobchatmessage",
+      "client_setbasicauthprompthandler",
+      "client_skipjob",
+      "client_streamjobaction",
+      "client_streamjobchatmessage",
+      "client_streamjobghostwritermessage",
+      "client_streamregeneratejobchatmessage",
+      "client_streamregeneratejobghostwritermessage",
+      "client_streamsseevents",
+      "client_summarizejob",
+      "client_switchjobghostwriterbranch",
+      "client_toapierror",
+      "client_tojobidlist",
+      "client_transitionjobstage",
+      "client_updatejoboutcome",
+      "client_updatejobstageevent",
+      "client_updatevisasponsorlist",
+      "client_validatellm",
+      "client_validateresumeconfig",
+      "client_validaterxresume",
+      "demo_toast_demotoastcard",
+      "demo_toast_showdemosimulatedtoast",
+      "discoveredpanel_handlerescore",
+      "lib_demo_toast_tsx",
+      "manualimportflow_getsourcehost",
+      "manualimportflow_handleanalyze",
+      "manualimportflow_handlefetch",
+      "manualimportflow_handleimport",
+      "manualimportflow_normalizedraft",
+      "manualimportflow_topayload",
+      "sse_parsesseframe",
+      "sse_shoulduseauthenticatedssefetch",
+      "sse_subscribetoeventsource"
+    ],
+    "1": [
+      "baseresumeid_getconfiguredrxresumebaseresumeid",
+      "baseresumeid_getrxresumebaseresumeidkey",
+      "baseresumeid_normalizerxresumemode",
+      "baseresumeid_resolverxresumebaseresumeidformode",
+      "index_buildcredentialfingerprint",
+      "index_buildresumecachekey",
+      "index_clearrxresumeresumecache",
+      "index_cloneresume",
+      "index_deleteresume",
+      "index_exportresumepdf",
+      "index_extractprojectsfromresume",
+      "index_fetchresumefromupstream",
+      "index_getresume",
+      "index_getresumeschemavalidationmessage",
+      "index_hasoverridekey",
+      "index_importresume",
+      "index_listresumes",
+      "index_normalizebaseurlforcache",
+      "index_normalizeerror",
+      "index_normalizemode",
+      "index_normalizev5resumelistresponse",
+      "index_normalizev5resumeresponse",
+      "index_parseresumedataformode",
+      "index_parseselectedprojectids",
+      "index_preparetailoredresumeforpdf",
+      "index_readconfiguredmode",
+      "index_readv4credentials",
+      "index_readv5credentials",
+      "index_resolveoperationcontext",
+      "index_resolveoverridevalue",
+      "index_resolverxresumemode",
+      "index_runrxresumeoperation",
+      "index_rxresumeauthconfigerror",
+      "index_rxresumeauthconfigerror_constructor",
+      "index_rxresumerequesterror",
+      "index_rxresumerequesterror_constructor",
+      "index_safeparseresumedataformode",
+      "index_tov4override",
+      "index_validatecredentials",
+      "index_validateresumeschema",
+      "onboarding_getdefaultvalidationbaseurl",
+      "onboarding_normalizellmprovidervalue",
+      "onboarding_validatellm",
+      "onboarding_validateresumeconfig",
+      "onboarding_validaterxresume",
+      "pdf_downloadrxresumepdf",
+      "pdf_generatepdf",
+      "pdf_getpdfpath",
+      "pdf_pdfexists",
+      "pdf_renderrxresumepdf",
+      "pdf_resolvepdfrenderer",
+      "profile_clearprofilecache",
+      "profile_getpersonname",
+      "profile_getprofile",
+      "server_api_routes_onboarding_ts",
+      "server_services_pdf_ts",
+      "server_services_profile_ts",
+      "server_services_rxresume_baseresumeid_ts",
+      "server_services_rxresume_index_ts",
+      "server_services_rxresume_schema_index_ts",
+      "server_services_rxresume_schema_v4_ts",
+      "server_services_rxresume_schema_v5_ts",
+      "server_services_rxresume_tailoring_ts",
+      "server_services_rxresume_v4_ts",
+      "server_services_rxresume_v5_ts",
+      "settings_getsetting",
+      "tailoring_applyprojectvisibility",
+      "tailoring_applytailoredchunks",
+      "tailoring_applytailoredheadline",
+      "tailoring_applytailoredskills",
+      "tailoring_applytailoredskillsv4",
+      "tailoring_applytailoredskillsv5",
+      "tailoring_applytailoredsummary",
+      "tailoring_asarray",
+      "tailoring_asrecord",
+      "tailoring_cloneresumedata",
+      "tailoring_extractprojectsfromresume",
+      "tailoring_inferrxresumemodefromdata",
+      "tailoring_parsetailoredskills",
+      "tailoring_sanitizev4skillssection",
+      "tailoring_validateandparseresumedataformode",
+      "v4_deleteresume",
+      "v4_exportresumepdf",
+      "v4_getresume",
+      "v4_importresume",
+      "v4_listresumes",
+      "v4_parsev4resumedata",
+      "v4_resolverxresumecredentials",
+      "v4_rxresumecredentialserror",
+      "v4_rxresumecredentialserror_constructor",
+      "v4_safeparsev4resumedata",
+      "v4_withrxresumeclient",
+      "v5_cleanbaseurl",
+      "v5_deleteresume",
+      "v5_executewithkeyretries",
+      "v5_exportresumepdf",
+      "v5_extracterrormessage",
+      "v5_fetchrxresume",
+      "v5_getresume",
+      "v5_importresume",
+      "v5_listresumes",
+      "v5_parsev5resumedata",
+      "v5_safeparsev5resumedata",
+      "v5_verifyapikey"
+    ],
+    "2": [
+      "errors_apperror",
+      "errors_apperror_constructor",
+      "errors_badrequest",
+      "errors_forbidden",
+      "errors_iszoderrorlike",
+      "errors_notfound",
+      "errors_requesttimeout",
+      "errors_serviceunavailable",
+      "errors_statustocode",
+      "errors_toapperror",
+      "errors_toproviderapperror",
+      "errors_unauthorized",
+      "errors_unprocessableentity",
+      "errors_upstreamerror",
+      "ghostwriter_buildbranchinfoforpath",
+      "ghostwriter_buildconversationmessages",
+      "ghostwriter_cancelrun",
+      "ghostwriter_cancelrunforjob",
+      "ghostwriter_chunktext",
+      "ghostwriter_completerun",
+      "ghostwriter_completerunifrunning",
+      "ghostwriter_createmessage",
+      "ghostwriter_createrun",
+      "ghostwriter_createthread",
+      "ghostwriter_deleteallmessagesforthread",
+      "ghostwriter_deleteallrunsforthread",
+      "ghostwriter_editmessage",
+      "ghostwriter_editmessageforjob",
+      "ghostwriter_ensurejobthread",
+      "ghostwriter_estimatetokencount",
+      "ghostwriter_getactivepathfromroot",
+      "ghostwriter_getactiverunforthread",
+      "ghostwriter_getancestorpath",
+      "ghostwriter_getchildrenofmessage",
+      "ghostwriter_getjobid",
+      "ghostwriter_getlatestassistantmessage",
+      "ghostwriter_getmessagebyid",
+      "ghostwriter_getorcreatethreadforjob",
+      "ghostwriter_getrunbyid",
+      "ghostwriter_getsiblingsof",
+      "ghostwriter_getthreadbyid",
+      "ghostwriter_getthreadforjob",
+      "ghostwriter_isrunningrununiqueconstrainterror",
+      "ghostwriter_listmessages",
+      "ghostwriter_listmessagesforjob",
+      "ghostwriter_listmessagesforthread",
+      "ghostwriter_listthreads",
+      "ghostwriter_listthreadsforjob",
+      "ghostwriter_mapmessage",
+      "ghostwriter_maprun",
+      "ghostwriter_mapthread",
+      "ghostwriter_regeneratemessage",
+      "ghostwriter_regeneratemessageforjob",
+      "ghostwriter_resetconversationforjob",
+      "ghostwriter_resolvellmruntimesettings",
+      "ghostwriter_runassistantreply",
+      "ghostwriter_sendmessage",
+      "ghostwriter_sendmessageforjob",
+      "ghostwriter_setactivechild",
+      "ghostwriter_setactiveroot",
+      "ghostwriter_switchbranch",
+      "ghostwriter_switchbranchforjob",
+      "ghostwriter_touchthread",
+      "ghostwriter_updatemessage",
+      "post_application_providers_asnonemptystring",
+      "post_application_providers_cleanupoauthstate",
+      "post_application_providers_enforceoauthstatestorelimit",
+      "post_application_providers_exchangegmailauthorizationcode",
+      "post_application_providers_fetchgmailuserprofile",
+      "post_application_providers_getoauthstatemaxentries",
+      "post_application_providers_getoauthstatettlms",
+      "post_application_providers_resolvegmailoauthconfig",
+      "post_application_providers_setoauthstate",
+      "server_api_routes_ghostwriter_ts",
+      "server_api_routes_post_application_providers_ts",
+      "server_api_routes_visa_sponsors_ts",
+      "server_infra_errors_ts",
+      "server_repositories_ghostwriter_ts",
+      "server_services_ghostwriter_ts",
+      "server_services_post_application_providers_service_ts",
+      "service_executepostapplicationprovideraction",
+      "settings_failrxresume",
+      "settings_torxresumevalidationapperror",
+      "setuptests_hasstorageshape",
+      "setuptests_resizeobserver",
+      "setuptests_resizeobserver_disconnect",
+      "setuptests_resizeobserver_observe",
+      "setuptests_resizeobserver_unobserve",
+      "setuptests_ts",
+      "visa_sponsors_mapupdateprovidererror",
+      "visa_sponsors_mapupdateprovidererrorcode"
+    ],
+    "3": [
+      "clear_cleardatabase",
+      "clear_dropdatabase",
+      "discover_jobs_discoverjobsstep",
+      "discover_jobs_filterjobsbyrequestedcities",
+      "discover_jobs_isblockedemployer",
+      "discover_jobs_parseblockedcompanykeywords",
+      "discovery_directoryexists",
+      "discovery_discovermanifestpaths",
+      "discovery_discoverprovidermanifestpaths",
+      "discovery_fileexists",
+      "discovery_getprovidersrootcandidates",
+      "discovery_ismanifest",
+      "discovery_isprovidermanifest",
+      "discovery_loadmanifestfromfile",
+      "discovery_loadprovidermanifestfromfile",
+      "discovery_resolveextractorsroot",
+      "discovery_resolveprovidersroot",
+      "index_calculatesimilarity",
+      "index_calculatesponsormatchsummary",
+      "index_cleanupoldcsvfiles",
+      "index_downloadlatestcsv",
+      "index_downloadlatestdataforprovider",
+      "index_ensureproviderdir",
+      "index_getcsvfiles",
+      "index_getmetadatapath",
+      "index_getorcreateproviderstate",
+      "index_getorganizationdetails",
+      "index_getproviderdatadir",
+      "index_getregisteredprovidermanifest",
+      "index_getstatus",
+      "index_initialize",
+      "index_loadallsponsors",
+      "index_loadsponsors",
+      "index_loadsponsorsforprovider",
+      "index_normalizecompanyname",
+      "index_readmetadata",
+      "index_searchsponsors",
+      "index_writemetadata",
+      "logger_logger",
+      "logger_logger_child",
+      "logger_logger_constructor",
+      "logger_logger_debug",
+      "logger_logger_log",
+      "logger_logger_warn",
+      "logger_resolveminlevel",
+      "notify_webhook_notifypipelinewebhookstep",
+      "registry_createregistry",
+      "registry_duplicatemanifestiderror",
+      "registry_duplicatemanifestiderror_constructor",
+      "registry_duplicatesourceprovidererror",
+      "registry_duplicatesourceprovidererror_constructor",
+      "registry_getextractorregistry",
+      "registry_getvisasponsorproviderregistry",
+      "registry_initializeextractorregistry",
+      "registry_initializevisasponsorproviderregistry",
+      "registry_issourceavailable",
+      "registry_listavailablesources",
+      "registry_resetextractorregistryfortests",
+      "registry_resetvisasponsorregistryfortests",
+      "registry_resolvecatalogmismatches",
+      "registry_strictmodeenabled",
+      "sanitize_redactstring",
+      "sanitize_sanitizeerror",
+      "sanitize_sanitizeunknown",
+      "sanitize_sanitizewebhookpayload",
+      "scheduler_calculatenexttime",
+      "scheduler_createscheduler",
+      "server_db_clear_ts",
+      "server_extractors_discovery_ts",
+      "server_extractors_registry_ts",
+      "server_infra_logger_ts",
+      "server_infra_sanitize_ts",
+      "server_pipeline_steps_discover_jobs_ts",
+      "server_pipeline_steps_notify_webhook_ts",
+      "server_services_visa_sponsors_index_ts",
+      "server_services_visa_sponsors_providers_discovery_ts",
+      "server_services_visa_sponsors_providers_registry_ts",
+      "server_utils_scheduler_ts",
+      "service_llmservice_constructor",
+      "service_normalizeprovider"
+    ],
+    "4": [
+      "client_components_onboardinggate_tsx",
+      "client_deletebackup",
+      "client_hooks_usedemoinfo_ts",
+      "client_lib_rxresume_config_ts",
+      "client_pages_settings_utils_ts",
+      "client_pages_settingspage_tsx",
+      "client_updatesettings",
+      "datadir_getdatadir",
+      "index_buildutcdate",
+      "index_cleanupoldbackups",
+      "index_createbackup",
+      "index_deletebackup",
+      "index_generatebackupfilename",
+      "index_getbackupdir",
+      "index_getbackupsettings",
+      "index_getbackuptype",
+      "index_getdbpath",
+      "index_getnextbackuptime",
+      "index_isbackupschedulerrunning",
+      "index_listbackups",
+      "index_parsebackupdate",
+      "index_setbackupsettings",
+      "index_startbackupscheduler",
+      "index_stopbackupscheduler",
+      "load_profile_loadprofilestep",
+      "logger_logger_info",
+      "onboardinggate_cn",
+      "onboardinggate_getstepprimarylabel",
+      "onboardinggate_handleback",
+      "onboardinggate_handleprimaryaction",
+      "onboardinggate_handlesavebaseresume",
+      "onboardinggate_handlesavellm",
+      "onboardinggate_handlesaverxresume",
+      "rxresume_config_buildrxresumesettingsupdate",
+      "rxresume_config_coercerxresumemode",
+      "rxresume_config_getinitialrxresumemode",
+      "rxresume_config_getrxresumebaseresumeselection",
+      "rxresume_config_getrxresumecredentialdrafts",
+      "rxresume_config_getrxresumecredentialprecheckfailure",
+      "rxresume_config_getrxresumemissingcredentiallabels",
+      "rxresume_config_getstoredrxresumecredentialavailability",
+      "rxresume_config_isrxresumeavailabilityvalidationfailure",
+      "rxresume_config_isrxresumeblockingvalidationfailure",
+      "rxresume_config_torxresumevalidationpayload",
+      "rxresume_config_validateandmaybepersistrxresumemode",
+      "server_config_datadir_ts",
+      "server_pipeline_steps_load_profile_ts",
+      "server_services_backup_index_ts",
+      "settingspage_getderivedsettings",
+      "settingspage_getrxresumevalidationfieldsformode",
+      "settingspage_getsectionbadge",
+      "settingspage_handleclearbyscore",
+      "settingspage_handleclearbystatuses",
+      "settingspage_handlecleardatabase",
+      "settingspage_handlecreatebackup",
+      "settingspage_handledeletebackup",
+      "settingspage_handlediscardchanges",
+      "settingspage_handlereset",
+      "settingspage_mapsettingstoform",
+      "settingspage_matchessettingssearch",
+      "settingspage_normalizellmprovidervalue",
+      "settingspage_normalizeprivateinput",
+      "settingspage_normalizeresumeprojectsforcatalog",
+      "settingspage_normalizestring",
+      "settingspage_nullifsame",
+      "settingspage_onsave",
+      "settingspage_sectionhasdirtystate",
+      "settingspage_sectionhaserrors",
+      "settingspage_stringarraysequal",
+      "settingspage_togglestatustoclear",
+      "settingspage_torxresumevalidationbadgestate",
+      "usedemoinfo_usedemoinfo",
+      "utils_arraysequal",
+      "utils_formatsecrethint",
+      "utils_getllmproviderconfig",
+      "utils_normalizellmprovider",
+      "utils_resumeprojectsequal",
+      "utils_supportsllmmodelsuggestions"
+    ],
+    "5": [
+      "analytics_bucketclicks",
+      "analytics_bucketcount",
+      "analytics_bucketquerylength",
+      "analytics_generateanalyticsuserid",
+      "analytics_getanalyticsappversion",
+      "analytics_getanalyticsuserid",
+      "analytics_resetanalyticsteststate",
+      "analytics_sanitizeeventpayload",
+      "analytics_shoulddedupe",
+      "analytics_stablestringify",
+      "analytics_trackevent",
+      "analytics_trackproductevent",
+      "apply_updates_applysettingsupdates",
+      "apply_updates_runaction",
+      "client_components_discovered_panel_discoveredpanel_tsx",
+      "client_components_ghostwriter_messagelist_tsx",
+      "client_hooks_queries_invalidate_ts",
+      "client_pages_jobpage_tsx",
+      "client_pages_orchestrator_jobdetailpanel_tsx",
+      "client_pages_tracerlinkspage_tsx",
+      "discoveredpanel_handlefinalize",
+      "discoveredpanel_handleskip",
+      "invalidate_invalidatejobdata",
+      "invalidate_invalidatesettingsdata",
+      "jobdetailpanel_handleapply",
+      "jobdetailpanel_handlecopyinfo",
+      "jobdetailpanel_handlemovetoinprogress",
+      "jobdetailpanel_handleprocess",
+      "jobdetailpanel_handlesavedescription",
+      "jobdetailpanel_handleskip",
+      "jobpage_confirmdeleteevent",
+      "jobpage_handlechecksponsor",
+      "jobpage_handlecopyjobinfo",
+      "jobpage_handledeleteevent",
+      "jobpage_handleeditevent",
+      "jobpage_handlelogevent",
+      "jobpage_handlemarkapplied",
+      "jobpage_handlemovetoinprogress",
+      "jobpage_handleregeneratepdf",
+      "jobpage_handlerescore",
+      "jobpage_handleskip",
+      "json_parsejsoncontent",
+      "json_stripmarkdowncodefences",
+      "lib_analytics_ts",
+      "logger_logger_error",
+      "messagelist_cancelediting",
+      "messagelist_copymessage",
+      "messagelist_startediting",
+      "messagelist_submitedit",
+      "scorer_parsejsonfromcontent",
+      "server_services_llm_utils_json_ts",
+      "server_services_settings_update_apply_updates_ts",
+      "tracerlinkspage_formatdaylabel",
+      "tracerlinkspage_formatrecentactivity",
+      "tracerlinkspage_formatrelativetime",
+      "tracerlinkspage_formatunixtimestamp",
+      "tracerlinkspage_getdaterangedaysbucket",
+      "tracerlinkspage_getrowclicks",
+      "tracerlinkspage_handlecopydestination",
+      "tracerlinkspage_handleselecttopjob",
+      "tracerlinkspage_handlesetdrilldownmode",
+      "tracerlinkspage_tounixendofday",
+      "tracerlinkspage_tounixstartofday",
+      "tracerlinkspage_trackfiltersapplied",
+      "utils_copytexttoclipboard",
+      "utils_formatjobforwebhook"
+    ],
+    "6": [
+      "applicationtracking_classifystageanalyticssource",
+      "applicationtracking_deletestageevent",
+      "applicationtracking_getstageevents",
+      "applicationtracking_gettasks",
+      "applicationtracking_inferoutcome",
+      "applicationtracking_isclosingstage",
+      "applicationtracking_maybetrackstageanalytics",
+      "applicationtracking_parsemetadata",
+      "applicationtracking_resolveoutcomeandclosedat",
+      "applicationtracking_transitionstage",
+      "applicationtracking_updatestageevent",
+      "email_router_buildcompactactivejobslist",
+      "email_router_buildindexedactivejobs",
+      "email_router_classifywithsmartrouter",
+      "email_router_minifyactivejobs",
+      "email_router_normalizebestmatchindex",
+      "email_router_sanitizejobpromptvalue",
+      "errors_conflict",
+      "gmail_sync_createautostageevent",
+      "jobs_listjobsummariesbyids",
+      "post_application_messages_getpostapplicationmessagebyexternalid",
+      "post_application_messages_getpostapplicationmessagebyid",
+      "post_application_messages_isterminalprocessingstatus",
+      "post_application_messages_listpostapplicationmessagesbyprocessingstatus",
+      "post_application_messages_listpostapplicationmessagesbysyncrun",
+      "post_application_messages_maprowtopostapplicationmessage",
+      "post_application_messages_test_upsertmessage",
+      "post_application_messages_updatepostapplicationmessagedecision",
+      "post_application_messages_updatepostapplicationmessagesuggestion",
+      "post_application_messages_upsertpostapplicationmessage",
+      "post_application_sync_runs_completepostapplicationsyncrun",
+      "post_application_sync_runs_getpostapplicationsyncrunbyid",
+      "post_application_sync_runs_listpostapplicationsyncruns",
+      "post_application_sync_runs_maprowtosyncrun",
+      "post_application_sync_runs_startpostapplicationsyncrun",
+      "product_analytics_buildpagepayload",
+      "product_analytics_ishttpurl",
+      "product_analytics_normalizebaseurl",
+      "product_analytics_resolvebaseurl",
+      "product_analytics_sanitizeanalyticspayload",
+      "product_analytics_trackserverproductevent",
+      "server_infra_product_analytics_ts",
+      "server_repositories_post_application_messages_test_ts",
+      "server_repositories_post_application_messages_ts",
+      "server_repositories_post_application_sync_runs_ts",
+      "server_services_applicationtracking_ts",
+      "server_services_post_application_ingestion_email_router_ts",
+      "server_services_post_application_review_service_ts",
+      "server_services_post_application_stage_target_ts",
+      "service_approvepostapplicationinboxitem",
+      "service_buildmatchedjobmap",
+      "service_denypostapplicationinboxitem",
+      "service_listpostapplicationinbox",
+      "service_listpostapplicationreviewruns",
+      "service_listpostapplicationrunmessages",
+      "service_runpostapplicationinboxaction",
+      "stage_target_messagetypefromstagetarget",
+      "stage_target_normalizestagetarget",
+      "stage_target_resolvestagetransitionfortarget",
+      "stage_target_stagetargetfrommessagetype"
+    ],
+    "7": [
+      "applicationsperdaychart_buildapplicationsperday",
+      "applicationsperdaychart_todatekey",
+      "client_buildauthheaders",
+      "client_components_charts_applicationsperdaychart_tsx",
+      "client_components_charts_conversionanalytics_tsx",
+      "client_components_charts_responseratebysourcechart_tsx",
+      "client_extracttokenfromcookies",
+      "client_pages_homepage_tsx",
+      "client_pages_orchestrator_useorchestratorfilters_ts",
+      "client_rxresumeclientimpl",
+      "client_rxresumeclientimpl_clearallcachedtokens",
+      "client_rxresumeclientimpl_clearcachedtoken",
+      "client_rxresumeclientimpl_constructor",
+      "client_rxresumeclientimpl_create",
+      "client_rxresumeclientimpl_delete",
+      "client_rxresumeclientimpl_get",
+      "client_rxresumeclientimpl_getcachekey",
+      "client_rxresumeclientimpl_gettoken",
+      "client_rxresumeclientimpl_list",
+      "client_rxresumeclientimpl_login",
+      "client_rxresumeclientimpl_normalizeresume",
+      "client_rxresumeclientimpl_print",
+      "client_rxresumeclientimpl_verifycredentials",
+      "client_rxresumeclientimpl_withautorefresh",
+      "client_sanitizeresponsesnippet",
+      "conversionanalytics_buildconversiontimeseries",
+      "conversionanalytics_buildfunneldata",
+      "conversionanalytics_calculateoverallconversion",
+      "conversionanalytics_isrejectedevent",
+      "conversionanalytics_todatekey",
+      "extractor_health_buildresponse",
+      "extractor_health_cachehealthcheck",
+      "extractor_health_checkextractorhealth",
+      "extractor_health_clonecachedresult",
+      "extractor_health_countvalidjobs",
+      "extractor_health_createhealthyresult",
+      "extractor_health_createunhealthyresult",
+      "extractor_health_getcachedhealthcheck",
+      "extractor_health_getextractorhealthcachettlmsfortests",
+      "extractor_health_getextractorhealthprobeconfigfortests",
+      "extractor_health_getmissingrequiredenvvars",
+      "extractor_health_hasnonemptystring",
+      "extractor_health_resetextractorhealthcachefortests",
+      "extractor_health_runfreshhealthcheck",
+      "homepage_homepage",
+      "responseratebysourcechart_buildresponseratebysource",
+      "server_api_routes_tracer_links_ts",
+      "server_services_extractor_health_ts",
+      "server_services_rxresume_client_ts",
+      "tracer_links_asserttimerange",
+      "tracer_links_resolverequestorigin",
+      "useorchestratorfilters_useorchestratorfilters"
+    ],
+    "8": [
+      "app_buildumamiproxybody",
+      "app_buildumamiproxyheaders",
+      "app_copyumamiresponseheaders",
+      "app_createapp",
+      "app_createbasicauthguard",
+      "app_getallowedumamimethods",
+      "app_getumamiupstreamurl",
+      "app_isallowedumamimethod",
+      "app_isallowedumamiproxypath",
+      "app_isstatsroute",
+      "app_isumamiproxytimeouterror",
+      "demo_getdemoinfo",
+      "demo_isdemomode",
+      "demo_makedemometa",
+      "demo_mode_computenextreset",
+      "demo_mode_initializedemomodeservices",
+      "demo_mode_resetdemodata",
+      "demo_mode_rundemoresetcycle",
+      "demo_mode_schedulenextreset",
+      "demo_seed_applydemobaseline",
+      "demo_seed_builddemobaseline",
+      "demo_seed_makedemolink",
+      "demo_seed_toisofromoffset",
+      "demo_senddemoblocked",
+      "demo_setdemoresettimes",
+      "envsettings_applystoredenvoverrides",
+      "http_apierrorhandler",
+      "http_asyncroute",
+      "http_fail",
+      "http_getresponserequestid",
+      "http_notfoundapihandler",
+      "http_ok",
+      "http_okwithmeta",
+      "http_requestcontextmiddleware",
+      "index_closedb",
+      "index_startserver",
+      "run_main",
+      "server_api_routes_test_utils_ts",
+      "server_app_ts",
+      "server_config_demo_ts",
+      "server_db_index_ts",
+      "server_index_ts",
+      "server_infra_http_ts",
+      "server_pipeline_run_ts",
+      "server_services_demo_mode_ts",
+      "server_services_demo_seed_ts",
+      "test_utils_startserver",
+      "test_utils_stopserver"
+    ],
+    "9": [
+      "capability_fallback_iscapabilityerror",
+      "factory_buildchatcompletionsbody",
+      "factory_createproviderstrategy",
+      "factory_extractchatcompletionstext",
+      "http_addqueryparam",
+      "http_buildheaders",
+      "http_getresponsedetail",
+      "http_joinurl",
+      "mode_selection_buildmodecachekey",
+      "mode_selection_clearmodecache",
+      "mode_selection_getorderedmodes",
+      "mode_selection_remembersuccessfulmode",
+      "object_getnestedvalue",
+      "object_isrecord",
+      "openai_compatible_appendversionedpath",
+      "openai_compatible_normalizebaseurlorendpoint",
+      "openai_compatible_resolvechatcompletionsurl",
+      "openai_compatible_resolvemodelsurl",
+      "retry_policy_getretrydelayms",
+      "retry_policy_shouldretryattempt",
+      "server_services_llm_policies_capability_fallback_ts",
+      "server_services_llm_policies_mode_selection_ts",
+      "server_services_llm_policies_retry_policy_ts",
+      "server_services_llm_providers_factory_ts",
+      "server_services_llm_providers_openai_compatible_ts",
+      "server_services_llm_service_ts",
+      "server_services_llm_utils_http_ts",
+      "server_services_llm_utils_object_ts",
+      "server_services_llm_utils_string_ts",
+      "service_getpreferredmodel",
+      "service_isgeminitextgenerationmodel",
+      "service_isopenaitextgenerationmodel",
+      "service_llmservice",
+      "service_llmservice_calljson",
+      "service_llmservice_listgeminimodels",
+      "service_llmservice_listmodels",
+      "service_llmservice_listollamamodels",
+      "service_llmservice_listopenaimodels",
+      "service_llmservice_trymode",
+      "service_llmservice_validatecredentials",
+      "service_normalizegeminimodelname",
+      "service_normalizemodelforprovider",
+      "service_sleep",
+      "service_sortmodels",
+      "string_parseerrormessage",
+      "string_truncate"
+    ],
+    "10": [
+      "client_components_discovered_panel_discoveredpanel_test_tsx",
+      "client_components_discovered_panel_tailormode_test_tsx",
+      "client_components_jobdetailseditdrawer_test_tsx",
+      "client_components_onboardinggate_test_tsx",
+      "client_components_readypanel_test_tsx",
+      "client_components_tailoringeditor_test_tsx",
+      "client_pages_inprogressboardpage_test_tsx",
+      "client_pages_orchestrator_useorchestratordata_test_ts",
+      "client_pages_orchestratorpage_test_tsx",
+      "client_pages_tracerlinkspage_test_tsx",
+      "client_pages_trackinginboxpage_test_tsx",
+      "client_test_renderwithqueryclient_tsx",
+      "discoveredpanel_test_render",
+      "inprogressboardpage_test_makeevent",
+      "inprogressboardpage_test_makejob",
+      "inprogressboardpage_test_render",
+      "jobdetailseditdrawer_test_render",
+      "onboardinggate_test_render",
+      "orchestratorpage_test_creatematchmedia",
+      "orchestratorpage_test_locationtext",
+      "orchestratorpage_test_locationwatcher",
+      "orchestratorpage_test_presskey",
+      "orchestratorpage_test_presskeyon",
+      "orchestratorpage_test_render",
+      "readypanel_test_render",
+      "renderwithqueryclient_createtestqueryclient",
+      "renderwithqueryclient_renderhookwithqueryclient",
+      "renderwithqueryclient_renderwithqueryclient",
+      "tailoringeditor_test_createjob",
+      "tailoringeditor_test_ensureaccordionopen",
+      "tailoringeditor_test_render",
+      "tailormode_test_createjob",
+      "tailormode_test_ensureaccordionopen",
+      "tailormode_test_render",
+      "tracerlinkspage_test_render",
+      "trackinginboxpage_test_makeinboxitem",
+      "trackinginboxpage_test_render",
+      "useorchestratordata_test_deferred",
+      "useorchestratordata_test_makeresponse",
+      "useorchestratordata_test_mockeventsource",
+      "useorchestratordata_test_mockeventsource_constructor",
+      "useorchestratordata_test_mockeventsource_emiterror",
+      "useorchestratordata_test_mockeventsource_emitmessage",
+      "useorchestratordata_test_mockeventsource_emitopen",
+      "useorchestratordata_test_renderhook"
+    ],
+    "11": [
+      "server_repositories_tracer_links_ts",
+      "server_services_tracer_links_ts",
+      "tracer_links_buildeventfilters",
+      "tracer_links_buildreadableslugprefix",
+      "tracer_links_classifydevicetype",
+      "tracer_links_classifyosfamily",
+      "tracer_links_classifyuafamily",
+      "tracer_links_collecturltargets",
+      "tracer_links_daybucketfromunixseconds",
+      "tracer_links_derivesourcelabel",
+      "tracer_links_fetchwithtimeout",
+      "tracer_links_findactivetracerlinkbytoken",
+      "tracer_links_getjobtracerlinksanalytics",
+      "tracer_links_getorcreatetracerlink",
+      "tracer_links_getreferrerhost",
+      "tracer_links_gettraceranalytics",
+      "tracer_links_gettraceranalyticstimeseries",
+      "tracer_links_gettraceranalyticstopjobs",
+      "tracer_links_gettraceranalyticstoplinks",
+      "tracer_links_gettraceranalyticstotals",
+      "tracer_links_gettracerreadiness",
+      "tracer_links_hashtext",
+      "tracer_links_inserttracerclickevent",
+      "tracer_links_ishttpurl",
+      "tracer_links_islikelybotuseragent",
+      "tracer_links_islocalorprivatehostname",
+      "tracer_links_isrecord",
+      "tracer_links_isuniqueconstrainterror",
+      "tracer_links_listtracerlinkstatsbyjob",
+      "tracer_links_maketracerreadinessresponse",
+      "tracer_links_normalizebaseurl",
+      "tracer_links_normalizeipprefix",
+      "tracer_links_normalizelimit",
+      "tracer_links_normalizenumber",
+      "tracer_links_normalizeslugprefix",
+      "tracer_links_randomtracecode",
+      "tracer_links_resettracerreadinesscachefortests",
+      "tracer_links_resolvetracerpublicbaseurl",
+      "tracer_links_resolvetracerreadinessbaseurl",
+      "tracer_links_resolvetracerredirect",
+      "tracer_links_rewriteresumelinkswithtracer",
+      "tracer_links_sanitizelettersonly"
+    ],
+    "12": [
+      "envsettings_applyenvvalue",
+      "envsettings_getenvsettingsdata",
+      "envsettings_normalizeenvinput",
+      "manualjob_buildinferenceprompt",
+      "manualjob_infermanualjobdetails",
+      "manualjob_normalizedraft",
+      "modelselection_readstringsettingvalue",
+      "modelselection_resolvedefaultmodelfromsettings",
+      "modelselection_resolvellmmodel",
+      "modelselection_resolvellmruntimesettings",
+      "projectselection_buildprojectselectionprompt",
+      "projectselection_fallbackpickprojectids",
+      "projectselection_pickprojectidsforjob",
+      "projectselection_truncate",
+      "resumeprojects_builddefaultresumeprojectssettings",
+      "resumeprojects_extractprojectsfromprofile",
+      "resumeprojects_normalizeresumeprojectssettings",
+      "resumeprojects_parseresumeprojectssettings",
+      "resumeprojects_resolveresumeprojectssettings",
+      "resumeprojects_striphtml",
+      "resumeprojects_uniquestrings",
+      "scorer_applysalarypenalty",
+      "scorer_buildscoringprompt",
+      "scorer_issalarymissing",
+      "scorer_mockscore",
+      "scorer_sanitizeprofileforprompt",
+      "scorer_scoreandrankjobs",
+      "scorer_scorejobsuitability",
+      "server_repositories_settings_ts",
+      "server_services_envsettings_ts",
+      "server_services_manualjob_ts",
+      "server_services_modelselection_ts",
+      "server_services_projectselection_ts",
+      "server_services_resumeprojects_ts",
+      "server_services_scorer_ts",
+      "server_services_settings_ts",
+      "settings_getallsettings",
+      "settings_geteffectivesettings",
+      "settings_normalizemodelforprovidercompatibility",
+      "settings_resolvedefaultllmbaseurl",
+      "settings_setsetting"
+    ],
+    "13": [
+      "async_pool_asyncpool",
+      "import_jobs_importjobsstep",
+      "jobs_createjob",
+      "jobs_createjobs",
+      "jobs_deletejobsbelowscore",
+      "jobs_deletejobsbystatus",
+      "jobs_getalljoburls",
+      "jobs_getjobbyid",
+      "jobs_getjobbyurl",
+      "jobs_getjoblistitems",
+      "jobs_getjobsforprocessing",
+      "jobs_getjobsrevision",
+      "jobs_getjobstats",
+      "jobs_getunscoreddiscoveredjobs",
+      "jobs_insertjob",
+      "jobs_isjoburluniqueviolation",
+      "jobs_maprowtojob",
+      "jobs_normalizestatusfilter",
+      "jobs_tryinsertjob",
+      "jobs_updatejob",
+      "process_jobs_processjobsstep",
+      "progress_aggregatecrawlingstats",
+      "progress_emptysourcecrawlingstats",
+      "progress_getprogress",
+      "progress_subscribetoprogress",
+      "progress_updateprogress",
+      "score_jobs_scorejobsstep",
+      "server_pipeline_progress_ts",
+      "server_pipeline_steps_import_jobs_ts",
+      "server_pipeline_steps_process_jobs_ts",
+      "server_pipeline_steps_score_jobs_ts",
+      "server_repositories_jobs_ts",
+      "server_utils_async_pool_ts"
+    ],
+    "14": [
+      "gmail_api_asstring",
+      "gmail_api_buildemailtext",
+      "gmail_api_buildgmailquery",
+      "gmail_api_cleanemailhtmlforllm",
+      "gmail_api_decodebase64url",
+      "gmail_api_decodetextpart",
+      "gmail_api_extractbodytext",
+      "gmail_api_fetchwithtimeout",
+      "gmail_api_getmessagefull",
+      "gmail_api_getmessagemetadata",
+      "gmail_api_gmailapi",
+      "gmail_api_listmessageids",
+      "gmail_api_normalizechunkfordedup",
+      "gmail_api_resolvegmailaccesstoken",
+      "gmail_sync_asstring",
+      "gmail_sync_headervalue",
+      "gmail_sync_normalizeerrormessage",
+      "gmail_sync_parsefromheader",
+      "gmail_sync_parsegmailcredentials",
+      "gmail_sync_parsereceivedat",
+      "gmail_sync_resolveprocessingstatus",
+      "gmail_sync_rungmailingestionsync",
+      "gmail_sync_runwithconcurrency",
+      "jobs_getalljobs",
+      "post_application_integrations_ascredentials",
+      "post_application_integrations_disconnectpostapplicationintegration",
+      "post_application_integrations_getpostapplicationintegration",
+      "post_application_integrations_maprowtointegration",
+      "post_application_integrations_updatepostapplicationintegrationsyncstate",
+      "post_application_integrations_upsertconnectedpostapplicationintegration",
+      "server_repositories_post_application_integrations_ts",
+      "server_services_post_application_ingestion_gmail_api_ts",
+      "server_services_post_application_ingestion_gmail_sync_ts"
+    ],
+    "15": [
+      "client_updatejob",
+      "demo_simulator_ensurejob",
+      "demo_simulator_ensureprojectids",
+      "demo_simulator_makedemoreason",
+      "demo_simulator_makedemosummary",
+      "demo_simulator_samplepdfpath",
+      "demo_simulator_scorefromjob",
+      "demo_simulator_simulateapplyjob",
+      "demo_simulator_simulategeneratepdf",
+      "demo_simulator_simulateprocessjob",
+      "demo_simulator_simulaterescorejob",
+      "demo_simulator_simulatesummarizejob",
+      "jobs_createsharedrescoreprofileloader",
+      "jobs_executejobactionforjob",
+      "jobs_isjoburlconflicterror",
+      "jobs_isresponsewritable",
+      "jobs_maperrorforresult",
+      "jobs_mapjobactionfailure",
+      "jobs_notifyjobcompletewebhook",
+      "jobs_parsestatusfilter",
+      "jobs_resolverequestorigin",
+      "jobs_sendevent",
+      "pipeline_sendprogress",
+      "server_api_routes_jobs_ts",
+      "server_api_routes_pipeline_ts",
+      "server_infra_sse_ts",
+      "server_services_demo_simulator_ts",
+      "sse_setupsse",
+      "sse_startsseheartbeat",
+      "sse_writessecomment",
+      "sse_writessedata"
+    ],
+    "16": [
+      "client_pages_orchestrator_jobdetailpanel_test_tsx",
+      "client_pages_orchestrator_orchestratorfilters_test_tsx",
+      "client_pages_orchestrator_orchestratorheader_test_tsx",
+      "index_renderresumepdf",
+      "jobdetailpanel_test_render",
+      "jobdetailpanel_test_renderjobdetailpanel",
+      "latex_renderlatexpdf",
+      "normalize_asarray",
+      "normalize_asrecord",
+      "normalize_cleantext",
+      "normalize_decodehtmlentities",
+      "normalize_dedupecontacts",
+      "normalize_extractbulletlines",
+      "normalize_getsectionrecord",
+      "normalize_getstring",
+      "normalize_gettoplevelsummary",
+      "normalize_geturlnode",
+      "normalize_isvisible",
+      "normalize_joinparts",
+      "normalize_normalizepreparedresumetolatexdocument",
+      "normalize_striphtmlpreservingbreaks",
+      "normalize_tocontactitems",
+      "normalize_toeducationentries",
+      "normalize_toentry",
+      "normalize_toexperienceentries",
+      "normalize_toprojectentries",
+      "normalize_toskillgroups",
+      "orchestratorfilters_test_renderfilters",
+      "orchestratorheader_test_renderheader",
+      "server_services_resume_renderer_index_ts",
+      "server_services_resume_renderer_normalize_ts"
+    ],
+    "17": [
+      "ghostwriter_context_buildjobchatpromptcontext",
+      "ghostwriter_context_buildjobsnapshot",
+      "ghostwriter_context_buildprofilesnapshot",
+      "ghostwriter_context_buildsystemprompt",
+      "ghostwriter_context_compactjoin",
+      "ghostwriter_context_truncate",
+      "output_language_collectprofilelanguagesample",
+      "output_language_detectprofilelanguage",
+      "output_language_getwritinglanguagelabel",
+      "output_language_resolvewritingoutputlanguage",
+      "output_language_scorelanguagesample",
+      "prompt_templates_geteffectiveprompttemplate",
+      "prompt_templates_renderprompttemplate",
+      "server_services_ghostwriter_context_ts",
+      "server_services_output_language_ts",
+      "server_services_prompt_templates_ts",
+      "server_services_summary_ts",
+      "server_services_writing_style_ts",
+      "service_llmservice_getbaseurl",
+      "service_llmservice_getprovider",
+      "summary_buildtailoringprompt",
+      "summary_generatesummary",
+      "summary_generatetailoring",
+      "summary_sanitizetext",
+      "writing_style_getwritingstyle",
+      "writing_style_stripdirectivesfromconstraints",
+      "writing_style_stripkeywordlimitfromconstraints",
+      "writing_style_striplanguagedirectivesfromconstraints",
+      "writing_style_stripwordlimitfromconstraints"
+    ],
+    "18": [
+      "client_components_charts_conversionanalytics_test_tsx",
+      "conversionanalytics_test_createevent",
+      "conversionanalytics_test_createjob",
+      "demo_simulator_simulatepipelinerun",
+      "orchestrator_ensurenotcancelled",
+      "orchestrator_generatefinalpdf",
+      "orchestrator_getpipelinestatus",
+      "orchestrator_ispipelinecancelrequested",
+      "orchestrator_pipelinecancellederror",
+      "orchestrator_pipelinecancellederror_constructor",
+      "orchestrator_processjob",
+      "orchestrator_requestpipelinecancel",
+      "orchestrator_runpipeline",
+      "orchestrator_summarizejob",
+      "pipeline_createpipelinerun",
+      "pipeline_getlatestpipelinerun",
+      "pipeline_getrecentpipelineruns",
+      "pipeline_updatepipelinerun",
+      "post_application_review_test_seedpendingmessage",
+      "progress_resetprogress",
+      "request_context_getrequestcontext",
+      "request_context_getrequestid",
+      "request_context_runwithrequestcontext",
+      "server_api_routes_post_application_review_test_ts",
+      "server_infra_request_context_ts",
+      "server_pipeline_orchestrator_ts",
+      "server_repositories_pipeline_ts"
+    ],
+    "19": [
+      "client_components_kbdhint_tsx",
+      "client_components_keyboardshortcutbar_tsx",
+      "client_hooks_usekeyboardavailability_ts",
+      "client_hooks_usemodifierpressed_ts",
+      "client_lib_meta_key_ts",
+      "client_lib_shortcut_map_ts",
+      "kbdhint_kbdhint",
+      "keyboardshortcutbar_keyboardshortcutbar",
+      "meta_key_getmetakeylabel",
+      "meta_key_getmetashortcutlabel",
+      "meta_key_getruntimenavigator",
+      "meta_key_isappleplatform",
+      "meta_key_ismetakeypressed",
+      "shortcut_map_dedupeshortcuts",
+      "shortcut_map_getdisplaykey",
+      "shortcut_map_getshortcutsfortab",
+      "shortcut_map_groupshortcuts",
+      "usekeyboardavailability_detectkeyboardavailability",
+      "usekeyboardavailability_ensurekeyboardlisteners",
+      "usekeyboardavailability_getkeyboardavailabilitysnapshot",
+      "usekeyboardavailability_matchesmedia",
+      "usekeyboardavailability_notifykeyboardlisteners",
+      "usekeyboardavailability_promotekeyboardavailability",
+      "usekeyboardavailability_resetkeyboardavailabilityfortests",
+      "usekeyboardavailability_usekeyboardavailability",
+      "usemodifierpressed_usemodifierpressed"
+    ],
+    "20": [
+      "client_lib_jobdescription_ts",
+      "client_pages_job_timeline_tsx",
+      "client_pages_settings_resume_projects_state_ts",
+      "client_pages_tracking_inbox_emailviewerlist_tsx",
+      "client_pages_trackinginboxpage_tsx",
+      "emailviewerlist_formatappliedjoblabel",
+      "emailviewerlist_formatepochms",
+      "emailviewerlist_getsenderlabel",
+      "emailviewerlist_scoretextclass",
+      "jobdescription_getrenderablejobdescription",
+      "lib_utils_ts",
+      "resume_projects_state_toggleaiselectable",
+      "resume_projects_state_togglemustinclude",
+      "timeline_formatrange",
+      "timeline_ondelete",
+      "timeline_togglegroup",
+      "trackinginboxpage_formatepochms",
+      "utils_clampint",
+      "utils_cn",
+      "utils_formatdate",
+      "utils_formatdatetime",
+      "utils_formattimestamp",
+      "utils_formattimestampwithtime",
+      "utils_safefilenamepart",
+      "utils_striphtml"
+    ],
+    "21": [
+      "client_components_readypanel_tsx",
+      "client_hooks_queries_usejobmutations_ts",
+      "client_hooks_usehotkeys_ts",
+      "client_hooks_useprofile_ts",
+      "client_hooks_userescorejob_ts",
+      "client_hooks_usewelcomemessage_ts",
+      "client_pages_orchestrator_usekeyboardshortcuts_ts",
+      "readypanel_readypanel",
+      "usehotkeys_iseditabletarget",
+      "usehotkeys_usehotkeys",
+      "usejobmutations_usechecksponsormutation",
+      "usejobmutations_usegeneratejobpdfmutation",
+      "usejobmutations_usemarkasappliedmutation",
+      "usejobmutations_userescorejobmutation",
+      "usejobmutations_useskipjobmutation",
+      "usejobmutations_useupdatejobmutation",
+      "usekeyboardshortcuts_usekeyboardshortcuts",
+      "useprofile_resetprofilecache",
+      "useprofile_useprofile",
+      "userescorejob_userescorejob",
+      "usewelcomemessage_hashcode",
+      "usewelcomemessage_usewelcomemessage"
+    ],
+    "22": [
+      "latex_buildlatexdocument",
+      "latex_escapeforcommand",
+      "latex_escapelatextext",
+      "latex_escapelatexurl",
+      "latex_getlatextemplatepath",
+      "latex_gettectonicbinary",
+      "latex_loadtemplate",
+      "latex_normalizetext",
+      "latex_readlatextemplate",
+      "latex_renderbullets",
+      "latex_rendercontactitems",
+      "latex_renderentrysection",
+      "latex_renderlink",
+      "latex_renderprojectentry",
+      "latex_renderskillssection",
+      "latex_rendersubheadingentry",
+      "latex_rendersummarysection",
+      "latex_resolvetemplatepath",
+      "latex_runtectonic",
+      "latex_truncateoutput",
+      "server_services_resume_renderer_latex_ts"
+    ],
+    "23": [
+      "errors_postapplicationprovidererror",
+      "errors_postapplicationprovidererror_constructor",
+      "errors_providerinvalidrequest",
+      "errors_providernotimplemented",
+      "errors_providerserviceunavailable",
+      "errors_providerupstreamerror",
+      "gmail_asnumber",
+      "gmail_asstring",
+      "gmail_buildstatus",
+      "gmail_parsegmailcredentials",
+      "gmail_revokegoogletoken",
+      "gmail_topublicintegration",
+      "imap_notimplemented",
+      "registry_ispostapplicationprovider",
+      "registry_listpostapplicationproviders",
+      "registry_resolvepostapplicationprovider",
+      "server_services_post_application_providers_errors_ts",
+      "server_services_post_application_providers_gmail_ts",
+      "server_services_post_application_providers_imap_ts",
+      "server_services_post_application_providers_registry_ts"
+    ],
+    "24": [
+      "automatic_run_calculateautomaticestimate",
+      "automatic_run_deriveextractorlimits",
+      "automatic_run_loadautomaticrunmemory",
+      "automatic_run_normalizeworkplacetypes",
+      "automatic_run_parsecitylocationsinput",
+      "automatic_run_parsecitylocationssetting",
+      "automatic_run_parsesearchtermsinput",
+      "automatic_run_saveautomaticrunmemory",
+      "automatic_run_serializecitylocationssetting",
+      "automatic_run_stringifysearchterms",
+      "automaticruntab_applypreset",
+      "automaticruntab_formatworkplacetypelabel",
+      "automaticruntab_getpresetselection",
+      "automaticruntab_getsourcedisabledreason",
+      "automaticruntab_handlesaveandrun",
+      "automaticruntab_normalizeuicountrykey",
+      "automaticruntab_toggleworkplacetype",
+      "automaticruntab_tonumber",
+      "client_pages_orchestrator_automatic_run_ts",
+      "client_pages_orchestrator_automaticruntab_tsx"
+    ],
+    "25": [
+      "client_components_tailoring_tailoringworkspace_tsx",
+      "client_components_tailoring_usetailoringdraft_ts",
+      "client_components_tailoring_utils_ts",
+      "tailoring_utils_createtailoredskilldraftid",
+      "tailoring_utils_fromeditableskillgroups",
+      "tailoring_utils_getoriginalheadline",
+      "tailoring_utils_getoriginalskills",
+      "tailoring_utils_getoriginalsummary",
+      "tailoring_utils_parsetailoredskills",
+      "tailoring_utils_serializetailoredskills",
+      "tailoring_utils_toeditableskillgroups",
+      "tailoringworkspace_normalizeskillsjson",
+      "tailoringworkspace_tobaselinefromjob",
+      "usetailoringdraft_hasselectiondiff",
+      "usetailoringdraft_parseincomingdraft",
+      "usetailoringdraft_parseselectedids",
+      "usetailoringdraft_usetailoringdraft"
+    ],
+    "26": [
+      "client_pages_orchestrator_jobcommandbar_tsx",
+      "client_pages_orchestrator_jobcommandbar_utils_ts",
+      "jobcommandbar_applylock",
+      "jobcommandbar_handleinputkeydown",
+      "jobcommandbar_handleopenchange",
+      "jobcommandbar_utils_computefieldmatchscore",
+      "jobcommandbar_utils_computejobmatchscore",
+      "jobcommandbar_utils_extractleadingattoken",
+      "jobcommandbar_utils_getcommandgroup",
+      "jobcommandbar_utils_getfiltertab",
+      "jobcommandbar_utils_getlockmatchesfromaliasprefix",
+      "jobcommandbar_utils_groupjobsforcommandbar",
+      "jobcommandbar_utils_jobmatcheslock",
+      "jobcommandbar_utils_ordercommandgroups",
+      "jobcommandbar_utils_parsetime",
+      "jobcommandbar_utils_resolvelockfromaliasprefix",
+      "jobcommandbar_utils_stripleadingattoken"
+    ],
+    "27": [
+      "client_pages_orchestrator_jobactionprogresstoast_tsx",
+      "client_pages_orchestrator_usejobselectionactions_tsx",
+      "client_pages_orchestrator_utils_ts",
+      "jobactionprogresstoast_jobactionprogresstoast",
+      "usejobselectionactions_getprogresstitle",
+      "usejobselectionactions_upsertprogresstoast",
+      "utils_clampnumber",
+      "utils_comparejobs",
+      "utils_comparenumber",
+      "utils_comparestring",
+      "utils_datevalue",
+      "utils_getenabledsources",
+      "utils_getjobcounts",
+      "utils_getsourceswithjobs",
+      "utils_jobmatchesquery",
+      "utils_parsesalarybounds"
+    ],
+    "28": [
+      "client_pages_settingspage_test_tsx",
+      "settingspage_test_clicklastbuttonbyname",
+      "settingspage_test_getsavebutton",
+      "settingspage_test_opendangerzonesection",
+      "settingspage_test_opendisplaysection",
+      "settingspage_test_openenvironmentsection",
+      "settingspage_test_openmodelsection",
+      "settingspage_test_opennavgroup",
+      "settingspage_test_openprompttemplatessection",
+      "settingspage_test_openreactiveresumesection",
+      "settingspage_test_openscoringsection",
+      "settingspage_test_openwritingstylesection",
+      "settingspage_test_render",
+      "settingspage_test_renderpage"
+    ],
+    "29": [
+      "lib_user_location_ts",
+      "user_location_canusestorage",
+      "user_location_countryfromregioncode",
+      "user_location_countryfromtimezone",
+      "user_location_detectusercountrykey",
+      "user_location_extractregioncodefromlocaletag",
+      "user_location_getdetectedcountrykey",
+      "user_location_normalizesupportedcountry",
+      "user_location_readcachedusercountry",
+      "user_location_writecachedusercountry"
+    ],
+    "30": [
+      "server_api_routes_settings_ts",
+      "settings_buildrxresumevalidationoptions",
+      "settings_getdefaultvalidationbaseurl",
+      "settings_hasinputkey",
+      "settings_ismissingrxresumeconfigvalidationresult",
+      "settings_normalizellmprovidervalue",
+      "settings_resolvellmconfig",
+      "settings_shouldvalidaterxresumeonsave"
+    ],
+    "31": [
+      "client_components_ready_panel_google_dorks_ts",
+      "ready_panel_google_dorks_builddork",
+      "ready_panel_google_dorks_buildreadypanelgoogledorks",
+      "ready_panel_google_dorks_formattermlist",
+      "ready_panel_google_dorks_getkeywordterms",
+      "ready_panel_google_dorks_parsetailoredskills",
+      "ready_panel_google_dorks_quoteterms",
+      "ready_panel_google_dorks_splitrawskills"
+    ],
+    "32": [
+      "client_pages_inprogressboardpage_tsx",
+      "inprogressboardpage_cn",
+      "inprogressboardpage_getcardleftaccentclass",
+      "inprogressboardpage_resolvecurrentstage",
+      "inprogressboardpage_sortbycompany",
+      "inprogressboardpage_sortbyrecent",
+      "inprogressboardpage_sortbytitle",
+      "inprogressboardpage_toboardstage"
+    ],
+    "33": [
+      "client_pages_visasponsorspage_tsx",
+      "visasponsorspage_getresultkey",
+      "visasponsorspage_getscoretokens",
+      "visasponsorspage_getsearchscopelabel",
+      "visasponsorspage_handlechange",
+      "visasponsorspage_handlecountrychange",
+      "visasponsorspage_handleselectorg",
+      "visasponsorspage_handleupdate"
+    ],
+    "34": [
+      "demo_defaults_builddemodeadline",
+      "demo_defaults_buildgeneratedjob",
+      "demo_defaults_makedemocompany",
+      "demo_defaults_sourcebaseurl",
+      "server_config_demo_defaults_ts"
+    ],
+    "35": [
+      "client_components_pipelineprogress_test_tsx",
+      "pipelineprogress_test_mockeventsource",
+      "pipelineprogress_test_mockeventsource_constructor",
+      "pipelineprogress_test_mockeventsource_emitmessage",
+      "pipelineprogress_test_mockeventsource_emitopen"
+    ],
+    "36": [
+      "chatsettingssection_test_selectcontent",
+      "chatsettingssection_test_selectitem",
+      "chatsettingssection_test_selecttrigger",
+      "chatsettingssection_test_selectvalue",
+      "client_pages_settings_components_chatsettingssection_test_tsx"
+    ],
+    "37": [
+      "client_pages_orchestrator_usepipelinesources_ts",
+      "usepipelinesources_normalizesources",
+      "usepipelinesources_resolveallowedsources",
+      "usepipelinesources_sourcesmatch",
+      "usepipelinesources_usepipelinesources"
+    ],
+    "38": [
+      "client_pages_orchestrator_jobactions_ts",
+      "jobactions_canmovetoready",
+      "jobactions_canrescore",
+      "jobactions_canskip",
+      "jobactions_getfailedjobids"
+    ],
+    "39": [
+      "client_hooks_usesettings_ts",
+      "client_pages_orchestrator_usepipelinecontrols_ts",
+      "usepipelinecontrols_usepipelinecontrols",
+      "usesettings_resetsettingscache",
+      "usesettings_usesettings"
+    ],
+    "40": [
+      "basic_auth_test_buildauthheader",
+      "basic_auth_test_createmockrequest",
+      "basic_auth_test_createmockresponse",
+      "server_basic_auth_test_ts"
+    ],
+    "41": [
+      "components_ui_drawer_tsx",
+      "drawer_drawer",
+      "drawer_drawerfooter",
+      "drawer_drawerheader"
+    ],
+    "42": [
+      "client_components_pipelineprogress_tsx",
+      "pipelineprogress_clamp",
+      "pipelineprogress_cn",
+      "pipelineprogress_resolvesourcelabel"
+    ],
+    "43": [
+      "client_components_layout_tsx",
+      "client_components_navigation_ts",
+      "layout_handlenavclick",
+      "navigation_isnavactive"
+    ],
+    "44": [
+      "client_components_reactiveresumeconfigpanel_tsx",
+      "reactiveresumeconfigpanel_handlemodechange",
+      "reactiveresumeconfigpanel_isavailabilitywarning",
+      "reactiveresumeconfigpanel_renderstatuspill"
+    ],
+    "45": [
+      "client_components_jobdetailseditdrawer_tsx",
+      "jobdetailseditdrawer_isvalidurl",
+      "jobdetailseditdrawer_normalizefromjob",
+      "jobdetailseditdrawer_normalizeoptional"
+    ],
+    "46": [
+      "client_components_ghostwriter_threadlist_tsx",
+      "threadlist_cn",
+      "threadlist_formatrelativetime",
+      "threadlist_normalizethreadtitle"
+    ],
+    "47": [
+      "client_lib_version_ts",
+      "version_canusestorage",
+      "version_checkforupdate",
+      "version_parseversion"
+    ],
+    "48": [
+      "client_pages_orchestratorpage_tsx",
+      "orchestratorpage_handlechange",
+      "orchestratorpage_handleselectjob",
+      "orchestratorpage_ondraweropenchange"
+    ],
+    "49": [
+      "chatsettingssection_normalizeblank",
+      "chatsettingssection_parsestoredterms",
+      "chatsettingssection_parsetokenizedterms",
+      "client_pages_settings_components_chatsettingssection_tsx"
+    ],
+    "50": [
+      "client_pages_orchestrator_useorchestratordata_ts",
+      "useorchestratordata_buildterminalsignature",
+      "useorchestratordata_isdocumentvisible",
+      "useorchestratordata_useorchestratordata"
+    ],
+    "51": [
+      "client_pages_orchestrator_usejobselectionactions_test_ts",
+      "usejobselectionactions_test_asstreamevents",
+      "usejobselectionactions_test_deferred",
+      "usejobselectionactions_test_mockstreamjobaction"
+    ],
+    "52": [
+      "public_url_ishttpurl",
+      "public_url_normalizebaseurl",
+      "server_infra_public_url_ts"
+    ],
+    "53": [
+      "profile_test_constructor",
+      "server_api_routes_profile_test_ts",
+      "server_services_profile_test_ts"
+    ],
+    "54": [
+      "extractor_health_test_createregistry",
+      "server_api_routes_extractor_health_test_ts",
+      "server_services_extractor_health_test_ts"
+    ],
+    "55": [
+      "demo_seed_test_logicalsnapshot",
+      "demo_seed_test_sortedpairs",
+      "server_services_demo_seed_test_ts"
+    ],
+    "56": [
+      "gemini_togeminicontents",
+      "gemini_togeminiresponseschema",
+      "server_services_llm_providers_gemini_ts"
+    ],
+    "57": [
+      "registry_persistaction",
+      "registry_result",
+      "server_services_settings_update_registry_ts"
+    ],
+    "58": [
+      "gmail_sync_idempotency_test_calljson",
+      "gmail_sync_idempotency_test_makejsonresponse",
+      "server_services_post_application_ingestion_gmail_sync_idempotency_test_ts"
+    ],
+    "59": [
+      "latex_test_createtempdir",
+      "latex_test_tectonicavailable",
+      "server_services_resume_renderer_latex_test_ts"
+    ],
+    "60": [
+      "chart_chartstyle",
+      "chart_usechartconfig",
+      "components_ui_chart_tsx"
+    ],
+    "61": [
+      "client_components_logeventmodal_tsx",
+      "logeventmodal_onsubmit",
+      "logeventmodal_todatetimelocal"
+    ],
+    "62": [
+      "client_components_jobdescriptionmarkdown_tsx",
+      "jobdescriptionmarkdown_getsafehref",
+      "jobdescriptionmarkdown_jobdescriptionmarkdown"
+    ],
+    "63": [
+      "client_hooks_usekeyboardavailability_test_ts",
+      "usekeyboardavailability_test_creatematchmedia",
+      "usekeyboardavailability_test_setmaxtouchpoints"
+    ],
+    "64": [
+      "client_hooks_usetracerreadiness_ts",
+      "usetracerreadiness_resettracerreadinesscache",
+      "usetracerreadiness_usetracerreadiness"
+    ],
+    "65": [
+      "client_pages_settings_constants_ts",
+      "constants_getmatchingwritingstylepresetid",
+      "constants_resolvewritingstyledraft"
+    ],
+    "66": [
+      "client_pages_settings_components_reactiveresumesection_tsx",
+      "reactiveresumesection_clearrxresumefeedback",
+      "reactiveresumesection_setdirtytouchedvalue"
+    ],
+    "67": [
+      "client_pages_settings_components_tracerlinkssettingssection_tsx",
+      "tracerlinkssettingssection_derivestatus",
+      "tracerlinkssettingssection_formatlastchecked"
+    ],
+    "68": [
+      "backupsettingssection_formatbackupdate",
+      "backupsettingssection_formatfilesize",
+      "client_pages_settings_components_backupsettingssection_tsx"
+    ],
+    "69": [
+      "client_pages_settings_components_prompttemplatessection_tsx",
+      "prompttemplatessection_handleresetall",
+      "prompttemplatessection_handleresetone"
+    ],
+    "70": [
+      "client_pages_orchestrator_usefilteredjobs_ts",
+      "usefilteredjobs_getsponsorcategory",
+      "usefilteredjobs_usefilteredjobs"
+    ],
+    "71": [
+      "client_pages_orchestrator_usescrolltojobitem_ts",
+      "usescrolltojobitem_escapecssattributevalue",
+      "usescrolltojobitem_usescrolltojobitem"
+    ],
+    "72": [
+      "server_pipeline_sponsor_matching_test_ts",
+      "sponsor_matching_test_createjob"
+    ],
+    "73": [
+      "select_jobs_selectjobsstep",
+      "server_pipeline_steps_select_jobs_ts"
+    ],
+    "74": [
+      "jobs_tailoring_test_createmanualjobid",
+      "server_api_routes_jobs_tailoring_test_ts"
+    ],
+    "75": [
+      "manual_jobs_cleanoptional",
+      "server_api_routes_manual_jobs_ts"
+    ],
+    "76": [
+      "api_contract_test_getroutesourcefiles",
+      "server_api_routes_api_contract_test_ts"
+    ],
+    "77": [
+      "server_api_routes_settings_test_ts",
+      "settings_test_constructor"
+    ],
+    "78": [
+      "onboarding_test_createminimalvalidresume",
+      "server_api_routes_onboarding_test_ts"
+    ],
+    "79": [
+      "server_api_routes_tracer_links_test_ts",
+      "tracer_links_test_seedtracerfixtures"
+    ],
+    "80": [
+      "discovery_test_maketemproot",
+      "server_extractors_discovery_test_ts"
+    ],
+    "81": [
+      "registry_test_makemanifest",
+      "server_extractors_registry_test_ts"
+    ],
+    "82": [
+      "pdf_skills_validation_test_clone",
+      "server_services_pdf_skills_validation_test_ts"
+    ],
+    "83": [
+      "pdf_tailoring_test_clone",
+      "server_services_pdf_tailoring_test_ts"
+    ],
+    "84": [
+      "openai_ensurejsoninstructionifneeded",
+      "server_services_llm_providers_openai_ts"
+    ],
+    "85": [
+      "gmail_sync_test_encodebase64url",
+      "server_services_post_application_ingestion_gmail_sync_test_ts"
+    ],
+    "86": [
+      "discovery_test_maketempreporoot",
+      "server_services_visa_sponsors_providers_discovery_test_ts"
+    ],
+    "87": [
+      "index_test_mocksettings",
+      "server_services_rxresume_index_test_ts"
+    ],
+    "88": [
+      "server_services_rxresume_v5_test_ts",
+      "v5_test_jsonresponse"
+    ],
+    "89": [
+      "components_ui_field_tsx",
+      "field_cn"
+    ],
+    "90": [
+      "components_ui_sonner_tsx",
+      "sonner_toaster"
+    ],
+    "91": [
+      "command_cn",
+      "components_ui_command_tsx"
+    ],
+    "92": [
+      "badge_badge",
+      "components_ui_badge_tsx"
+    ],
+    "93": [
+      "client_components_scoreindicator_tsx",
+      "scoreindicator_scoreindicator"
+    ],
+    "94": [
+      "client_components_tailoredsummary_tsx",
+      "tailoredsummary_tailoredsummary"
+    ],
+    "95": [
+      "client_components_tailoringeditor_tsx",
+      "tailoringeditor_tailoringeditor"
+    ],
+    "96": [
+      "client_components_confirmdelete_tsx",
+      "confirmdelete_confirmdelete"
+    ],
+    "97": [
+      "client_components_openjoblistingbutton_tsx",
+      "openjoblistingbutton_openjoblistingbutton"
+    ],
+    "98": [
+      "client_components_fitassessment_tsx",
+      "fitassessment_fitassessment"
+    ],
+    "99": [
+      "client_components_statusbadge_tsx",
+      "statusbadge_statusbadge"
+    ],
+    "100": [
+      "client_components_readysummaryaccordion_tsx",
+      "readysummaryaccordion_readysummaryaccordion"
+    ],
+    "101": [
+      "client_components_tailoring_rules_ts",
+      "rules_canfinalizetailoring"
+    ],
+    "102": [
+      "client_components_discovered_panel_processingstate_tsx",
+      "processingstate_processingstate"
+    ],
+    "103": [
+      "client_components_discovered_panel_tailormode_tsx",
+      "tailormode_tailormode"
+    ],
+    "104": [
+      "client_components_discovered_panel_emptystate_tsx",
+      "emptystate_emptystate"
+    ],
+    "105": [
+      "client_components_ghostwriter_streamingmessage_tsx",
+      "streamingmessage_streamingmessage"
+    ],
+    "106": [
+      "branchnavigator_branchnavigator",
+      "client_components_ghostwriter_branchnavigator_tsx"
+    ],
+    "107": [
+      "client_components_ghostwriter_composer_tsx",
+      "composer_submit"
+    ],
+    "108": [
+      "client_hooks_userxresumeconfigstate_ts",
+      "userxresumeconfigstate_userxresumeconfigstate"
+    ],
+    "109": [
+      "client_hooks_useversioncheck_ts",
+      "useversioncheck_useversioncheck"
+    ],
+    "110": [
+      "client_hooks_usequeryerrortoast_ts",
+      "usequeryerrortoast_usequeryerrortoast"
+    ],
+    "111": [
+      "client_hooks_queries_usesettingsmutation_ts",
+      "usesettingsmutation_useupdatesettingsmutation"
+    ],
+    "112": [
+      "client_lib_queryclient_ts",
+      "queryclient_createqueryclient"
+    ],
+    "113": [
+      "client_api_client_auth_test_ts",
+      "client_auth_test_createjsonresponse"
+    ],
+    "114": [
+      "client_pages_gmailoauthcallbackpage_tsx",
+      "gmailoauthcallbackpage_gmailoauthcallbackpage"
+    ],
+    "115": [
+      "client_pages_settings_components_scoringsettingssection_tsx",
+      "scoringsettingssection_parsetokenizedkeywordinput"
+    ],
+    "116": [
+      "client_pages_orchestrator_joblistpanel_tsx",
+      "joblistpanel_cn"
+    ],
+    "117": [
+      "client_pages_orchestrator_jobcommandbarlocksuggestions_tsx",
+      "jobcommandbarlocksuggestions_jobcommandbarlocksuggestions"
+    ],
+    "118": [
+      "client_pages_orchestrator_jobstatusbadge_tsx",
+      "jobstatusbadge_jobstatusbadge"
+    ],
+    "119": [
+      "client_pages_orchestrator_useorchestratorfilters_test_tsx",
+      "useorchestratorfilters_test_createwrapper"
+    ],
+    "120": [
+      "client_pages_orchestrator_usepipelinesources_test_ts",
+      "usepipelinesources_test_ensurestorage"
+    ],
+    "121": [
+      "client_pages_orchestrator_orchestratorfilters_tsx",
+      "orchestratorfilters_getdirectionoptions"
+    ],
+    "122": [
+      "client_pages_orchestrator_jobrowcontent_tsx",
+      "jobrowcontent_getsuitabilityscoretone"
+    ],
+    "123": [
+      "client_pages_orchestrator_jobcommandbar_test_tsx",
+      "jobcommandbar_test_openwithkeyboard"
+    ],
+    "124": [
+      "tinykeys_d_ts"
+    ],
+    "125": [
+      "server_tailoring_flow_test_ts"
+    ],
+    "126": [
+      "server_pipeline_index_ts"
+    ],
+    "127": [
+      "server_pipeline_cancellation_test_ts"
+    ],
+    "128": [
+      "server_pipeline_steps_discover_jobs_test_ts"
+    ],
+    "129": [
+      "server_pipeline_steps_types_ts"
+    ],
+    "130": [
+      "server_pipeline_steps_select_jobs_test_ts"
+    ],
+    "131": [
+      "server_pipeline_steps_index_ts"
+    ],
+    "132": [
+      "server_pipeline_steps_score_jobs_test_ts"
+    ],
+    "133": [
+      "server_infra_errors_test_ts"
+    ],
+    "134": [
+      "server_infra_product_analytics_test_ts"
+    ],
+    "135": [
+      "server_infra_sse_test_ts"
+    ],
+    "136": [
+      "server_config_demo_defaults_data_ts"
+    ],
+    "137": [
+      "server_config_env_ts"
+    ],
+    "138": [
+      "server_utils_scheduler_test_ts"
+    ],
+    "139": [
+      "server_utils_async_pool_test_ts"
+    ],
+    "140": [
+      "server_repositories_tracer_links_test_ts"
+    ],
+    "141": [
+      "server_db_schema_ts"
+    ],
+    "142": [
+      "server_db_migrate_ts"
+    ],
+    "143": [
+      "server_api_routes_ts"
+    ],
+    "144": [
+      "server_api_index_ts"
+    ],
+    "145": [
+      "server_api_routes_pipeline_test_ts"
+    ],
+    "146": [
+      "server_api_routes_post_application_review_ts"
+    ],
+    "147": [
+      "server_api_routes_demo_ts"
+    ],
+    "148": [
+      "server_api_routes_ghostwriter_test_ts"
+    ],
+    "149": [
+      "server_api_routes_extractor_health_ts"
+    ],
+    "150": [
+      "server_api_routes_manual_jobs_test_ts"
+    ],
+    "151": [
+      "server_api_routes_jobs_test_ts"
+    ],
+    "152": [
+      "server_api_routes_database_test_ts"
+    ],
+    "153": [
+      "server_api_routes_post_application_providers_test_ts"
+    ],
+    "154": [
+      "server_api_routes_database_ts"
+    ],
+    "155": [
+      "server_api_routes_profile_ts"
+    ],
+    "156": [
+      "server_api_routes_visa_sponsors_test_ts"
+    ],
+    "157": [
+      "server_api_routes_webhook_test_ts"
+    ],
+    "158": [
+      "server_api_routes_webhook_ts"
+    ],
+    "159": [
+      "server_api_routes_backup_ts"
+    ],
+    "160": [
+      "server_api_routes_stats_proxy_test_ts"
+    ],
+    "161": [
+      "server_api_routes_demo_mode_test_ts"
+    ],
+    "162": [
+      "server_api_routes_backup_test_ts"
+    ],
+    "163": [
+      "server_services_modelselection_test_ts"
+    ],
+    "164": [
+      "server_services_envsettings_migration_test_ts"
+    ],
+    "165": [
+      "server_services_manualjob_test_ts"
+    ],
+    "166": [
+      "server_services_ghostwriter_context_test_ts"
+    ],
+    "167": [
+      "server_services_ghostwriter_test_ts"
+    ],
+    "168": [
+      "server_services_ai_resilience_test_ts"
+    ],
+    "169": [
+      "server_services_applicationtracking_test_ts"
+    ],
+    "170": [
+      "server_services_resumeprojects_test_ts"
+    ],
+    "171": [
+      "server_services_writing_style_test_ts"
+    ],
+    "172": [
+      "server_services_tracer_links_test_ts"
+    ],
+    "173": [
+      "server_services_summary_test_ts"
+    ],
+    "174": [
+      "server_services_scorer_test_ts"
+    ],
+    "175": [
+      "server_services_llm_service_test_ts"
+    ],
+    "176": [
+      "server_services_prompt_templates_test_ts"
+    ],
+    "177": [
+      "server_services_output_language_test_ts"
+    ],
+    "178": [
+      "server_services_llm_types_ts"
+    ],
+    "179": [
+      "server_services_llm_providers_ollama_ts"
+    ],
+    "180": [
+      "server_services_llm_providers_providers_test_ts"
+    ],
+    "181": [
+      "server_services_llm_providers_openrouter_ts"
+    ],
+    "182": [
+      "server_services_llm_providers_lmstudio_ts"
+    ],
+    "183": [
+      "server_services_llm_providers_index_ts"
+    ],
+    "184": [
+      "server_services_llm_policies_capability_fallback_test_ts"
+    ],
+    "185": [
+      "server_services_llm_policies_retry_policy_test_ts"
+    ],
+    "186": [
+      "server_services_llm_policies_mode_selection_test_ts"
+    ],
+    "187": [
+      "server_services_settings_update_index_ts"
+    ],
+    "188": [
+      "server_services_settings_update_apply_updates_test_ts"
+    ],
+    "189": [
+      "server_services_post_application_providers_service_test_ts"
+    ],
+    "190": [
+      "server_services_post_application_providers_types_ts"
+    ],
+    "191": [
+      "server_services_post_application_providers_index_ts"
+    ],
+    "192": [
+      "server_services_post_application_review_index_ts"
+    ],
+    "193": [
+      "server_services_resume_renderer_normalize_test_ts"
+    ],
+    "194": [
+      "server_services_resume_renderer_types_ts"
+    ],
+    "195": [
+      "server_services_visa_sponsors_index_test_ts"
+    ],
+    "196": [
+      "server_services_backup_index_test_ts"
+    ],
+    "197": [
+      "server_services_rxresume_client_test_ts"
+    ],
+    "198": [
+      "server_services_rxresume_schema_v4_test_ts"
+    ],
+    "199": [
+      "components_ui_alert_dialog_tsx"
+    ],
+    "200": [
+      "components_ui_tabs_tsx"
+    ],
+    "201": [
+      "components_ui_card_tsx"
+    ],
+    "202": [
+      "components_ui_popover_tsx"
+    ],
+    "203": [
+      "components_ui_progress_tsx"
+    ],
+    "204": [
+      "components_ui_sheet_tsx"
+    ],
+    "205": [
+      "components_ui_label_tsx"
+    ],
+    "206": [
+      "components_ui_accordion_tsx"
+    ],
+    "207": [
+      "components_ui_tooltip_tsx"
+    ],
+    "208": [
+      "components_ui_alert_tsx"
+    ],
+    "209": [
+      "components_ui_switch_tsx"
+    ],
+    "210": [
+      "components_ui_radio_group_tsx"
+    ],
+    "211": [
+      "components_ui_searchable_dropdown_tsx"
+    ],
+    "212": [
+      "components_ui_dialog_tsx"
+    ],
+    "213": [
+      "components_ui_table_tsx"
+    ],
+    "214": [
+      "components_ui_separator_tsx"
+    ],
+    "215": [
+      "components_ui_button_tsx"
+    ],
+    "216": [
+      "components_ui_checkbox_tsx"
+    ],
+    "217": [
+      "components_ui_dropdown_menu_tsx"
+    ],
+    "218": [
+      "components_ui_select_tsx"
+    ],
+    "219": [
+      "components_ui_textarea_tsx"
+    ],
+    "220": [
+      "components_ui_input_tsx"
+    ],
+    "221": [
+      "lib_utils_test_ts"
+    ],
+    "222": [
+      "lib_analytics_test_ts"
+    ],
+    "223": [
+      "lib_user_location_test_ts"
+    ],
+    "224": [
+      "client_app_tsx"
+    ],
+    "225": [
+      "client_main_tsx"
+    ],
+    "226": [
+      "client_app_test_tsx"
+    ],
+    "227": [
+      "client_components_keyboardshortcutdialog_tsx"
+    ],
+    "228": [
+      "client_components_manualimportsheet_tsx"
+    ],
+    "229": [
+      "client_components_basicauthprompt_tsx"
+    ],
+    "230": [
+      "client_components_manualimportsheet_test_tsx"
+    ],
+    "231": [
+      "client_components_statusindicator_tsx"
+    ],
+    "232": [
+      "client_components_logeventmodal_test_tsx"
+    ],
+    "233": [
+      "client_components_jobheader_test_tsx"
+    ],
+    "234": [
+      "client_components_jobheader_tsx"
+    ],
+    "235": [
+      "client_components_stats_tsx"
+    ],
+    "236": [
+      "client_components_ready_panel_google_dorks_test_ts"
+    ],
+    "237": [
+      "client_components_index_ts"
+    ],
+    "238": [
+      "client_components_tailoring_utils_test_ts"
+    ],
+    "239": [
+      "client_components_tailoring_rules_test_ts"
+    ],
+    "240": [
+      "client_components_tailoring_tailoringsections_tsx"
+    ],
+    "241": [
+      "client_components_discovered_panel_helpers_ts"
+    ],
+    "242": [
+      "client_components_discovered_panel_projectselector_tsx"
+    ],
+    "243": [
+      "client_components_discovered_panel_collapsiblesection_tsx"
+    ],
+    "244": [
+      "client_components_discovered_panel_decidemode_tsx"
+    ],
+    "245": [
+      "client_components_charts_durationselector_tsx"
+    ],
+    "246": [
+      "client_components_charts_chartkpipanel_tsx"
+    ],
+    "247": [
+      "client_components_charts_durationselector_test_tsx"
+    ],
+    "248": [
+      "client_components_charts_index_ts"
+    ],
+    "249": [
+      "client_components_charts_applicationsperdaychart_test_tsx"
+    ],
+    "250": [
+      "client_components_ghostwriter_ghostwriterdrawer_tsx"
+    ],
+    "251": [
+      "client_components_ghostwriter_messagelist_test_tsx"
+    ],
+    "252": [
+      "client_components_ghostwriter_runcontrols_tsx"
+    ],
+    "253": [
+      "client_components_ghostwriter_ghostwriterpanel_tsx"
+    ],
+    "254": [
+      "client_hooks_usesettings_test_ts"
+    ],
+    "255": [
+      "client_hooks_userescorejob_test_ts"
+    ],
+    "256": [
+      "client_hooks_queries_invalidate_test_ts"
+    ],
+    "257": [
+      "client_lib_meta_key_test_ts"
+    ],
+    "258": [
+      "client_lib_querykeys_ts"
+    ],
+    "259": [
+      "client_lib_version_test_ts"
+    ],
+    "260": [
+      "client_lib_sse_test_ts"
+    ],
+    "261": [
+      "client_api_client_demo_test_ts"
+    ],
+    "262": [
+      "client_api_client_stream_test_ts"
+    ],
+    "263": [
+      "client_api_index_ts"
+    ],
+    "264": [
+      "client_pages_settings_utils_test_ts"
+    ],
+    "265": [
+      "client_pages_settings_resume_projects_state_test_ts"
+    ],
+    "266": [
+      "client_pages_settings_types_ts"
+    ],
+    "267": [
+      "client_pages_settings_constants_test_ts"
+    ],
+    "268": [
+      "client_pages_settings_components_dangerzonesection_test_tsx"
+    ],
+    "269": [
+      "client_pages_settings_components_environmentsettingssection_test_tsx"
+    ],
+    "270": [
+      "client_pages_settings_components_prompttemplatessection_test_tsx"
+    ],
+    "271": [
+      "client_pages_settings_components_dangerzonesection_tsx"
+    ],
+    "272": [
+      "client_pages_settings_components_environmentsettingssection_tsx"
+    ],
+    "273": [
+      "client_pages_settings_components_settingssectionframe_tsx"
+    ],
+    "274": [
+      "client_pages_settings_components_baseresumeselection_tsx"
+    ],
+    "275": [
+      "client_pages_settings_components_webhookssection_tsx"
+    ],
+    "276": [
+      "client_pages_settings_components_modelsettingssection_tsx"
+    ],
+    "277": [
+      "client_pages_settings_components_settingsinput_tsx"
+    ],
+    "278": [
+      "client_pages_settings_components_displaysettingssection_tsx"
+    ],
+    "279": [
+      "client_pages_settings_components_webhookssection_test_tsx"
+    ],
+    "280": [
+      "client_pages_job_timeline_test_tsx"
+    ],
+    "281": [
+      "client_pages_orchestrator_utils_test_ts"
+    ],
+    "282": [
+      "client_pages_orchestrator_runmodemodal_tsx"
+    ],
+    "283": [
+      "client_pages_orchestrator_joblistpanel_test_tsx"
+    ],
+    "284": [
+      "client_pages_orchestrator_automatic_run_test_ts"
+    ],
+    "285": [
+      "client_pages_orchestrator_jobactions_test_ts"
+    ],
+    "286": [
+      "client_pages_orchestrator_usefilteredjobs_test_ts"
+    ],
+    "287": [
+      "client_pages_orchestrator_usepipelinecontrols_test_ts"
+    ],
+    "288": [
+      "client_pages_orchestrator_jobcommandbarlockbadge_tsx"
+    ],
+    "289": [
+      "client_pages_orchestrator_constants_ts"
+    ],
+    "290": [
+      "client_pages_orchestrator_jobcommandbar_utils_test_ts"
+    ],
+    "291": [
+      "client_pages_orchestrator_orchestratorheader_tsx"
+    ],
+    "292": [
+      "client_pages_orchestrator_orchestratorsummary_tsx"
+    ],
+    "293": [
+      "client_pages_orchestrator_runmodemodal_test_tsx"
+    ],
+    "294": [
+      "client_pages_orchestrator_floatingjobactionsbar_tsx"
+    ],
+    "295": [
+      "client_pages_orchestrator_run_mode_ts"
+    ],
+    "296": [
+      "client_pages_orchestrator_automaticruntab_test_tsx"
+    ]
+  },
+  "cohesion": {
+    "0": 0.03,
+    "1": 0.04,
+    "2": 0.05,
+    "3": 0.05,
+    "4": 0.04,
+    "5": 0.05,
+    "6": 0.05,
+    "7": 0.06,
+    "8": 0.06,
+    "9": 0.07,
+    "10": 0.05,
+    "11": 0.09,
+    "12": 0.08,
+    "13": 0.08,
+    "14": 0.09,
+    "15": 0.1,
+    "16": 0.15,
+    "17": 0.13,
+    "18": 0.09,
+    "19": 0.1,
+    "20": 0.08,
+    "21": 0.11,
+    "22": 0.18,
+    "23": 0.14,
+    "24": 0.12,
+    "25": 0.16,
+    "26": 0.15,
+    "27": 0.17,
+    "28": 0.33,
+    "29": 0.44,
+    "30": 0.36,
+    "31": 0.54,
+    "32": 0.25,
+    "33": 0.25,
+    "34": 0.7,
+    "35": 0.4,
+    "36": 0.4,
+    "37": 0.4,
+    "38": 0.4,
+    "39": 0.4,
+    "40": 0.5,
+    "41": 0.5,
+    "42": 0.5,
+    "43": 0.5,
+    "44": 0.5,
+    "45": 0.5,
+    "46": 0.5,
+    "47": 0.83,
+    "48": 0.5,
+    "49": 0.67,
+    "50": 0.5,
+    "51": 0.5,
+    "52": 1.0,
+    "53": 0.67,
+    "54": 0.67,
+    "55": 0.67,
+    "56": 0.67,
+    "57": 0.67,
+    "58": 0.67,
+    "59": 0.67,
+    "60": 0.67,
+    "61": 0.67,
+    "62": 0.67,
+    "63": 0.67,
+    "64": 0.67,
+    "65": 0.67,
+    "66": 0.67,
+    "67": 0.67,
+    "68": 0.67,
+    "69": 0.67,
+    "70": 0.67,
+    "71": 0.67,
+    "72": 1.0,
+    "73": 1.0,
+    "74": 1.0,
+    "75": 1.0,
+    "76": 1.0,
+    "77": 1.0,
+    "78": 1.0,
+    "79": 1.0,
+    "80": 1.0,
+    "81": 1.0,
+    "82": 1.0,
+    "83": 1.0,
+    "84": 1.0,
+    "85": 1.0,
+    "86": 1.0,
+    "87": 1.0,
+    "88": 1.0,
+    "89": 1.0,
+    "90": 1.0,
+    "91": 1.0,
+    "92": 1.0,
+    "93": 1.0,
+    "94": 1.0,
+    "95": 1.0,
+    "96": 1.0,
+    "97": 1.0,
+    "98": 1.0,
+    "99": 1.0,
+    "100": 1.0,
+    "101": 1.0,
+    "102": 1.0,
+    "103": 1.0,
+    "104": 1.0,
+    "105": 1.0,
+    "106": 1.0,
+    "107": 1.0,
+    "108": 1.0,
+    "109": 1.0,
+    "110": 1.0,
+    "111": 1.0,
+    "112": 1.0,
+    "113": 1.0,
+    "114": 1.0,
+    "115": 1.0,
+    "116": 1.0,
+    "117": 1.0,
+    "118": 1.0,
+    "119": 1.0,
+    "120": 1.0,
+    "121": 1.0,
+    "122": 1.0,
+    "123": 1.0,
+    "124": 1.0,
+    "125": 1.0,
+    "126": 1.0,
+    "127": 1.0,
+    "128": 1.0,
+    "129": 1.0,
+    "130": 1.0,
+    "131": 1.0,
+    "132": 1.0,
+    "133": 1.0,
+    "134": 1.0,
+    "135": 1.0,
+    "136": 1.0,
+    "137": 1.0,
+    "138": 1.0,
+    "139": 1.0,
+    "140": 1.0,
+    "141": 1.0,
+    "142": 1.0,
+    "143": 1.0,
+    "144": 1.0,
+    "145": 1.0,
+    "146": 1.0,
+    "147": 1.0,
+    "148": 1.0,
+    "149": 1.0,
+    "150": 1.0,
+    "151": 1.0,
+    "152": 1.0,
+    "153": 1.0,
+    "154": 1.0,
+    "155": 1.0,
+    "156": 1.0,
+    "157": 1.0,
+    "158": 1.0,
+    "159": 1.0,
+    "160": 1.0,
+    "161": 1.0,
+    "162": 1.0,
+    "163": 1.0,
+    "164": 1.0,
+    "165": 1.0,
+    "166": 1.0,
+    "167": 1.0,
+    "168": 1.0,
+    "169": 1.0,
+    "170": 1.0,
+    "171": 1.0,
+    "172": 1.0,
+    "173": 1.0,
+    "174": 1.0,
+    "175": 1.0,
+    "176": 1.0,
+    "177": 1.0,
+    "178": 1.0,
+    "179": 1.0,
+    "180": 1.0,
+    "181": 1.0,
+    "182": 1.0,
+    "183": 1.0,
+    "184": 1.0,
+    "185": 1.0,
+    "186": 1.0,
+    "187": 1.0,
+    "188": 1.0,
+    "189": 1.0,
+    "190": 1.0,
+    "191": 1.0,
+    "192": 1.0,
+    "193": 1.0,
+    "194": 1.0,
+    "195": 1.0,
+    "196": 1.0,
+    "197": 1.0,
+    "198": 1.0,
+    "199": 1.0,
+    "200": 1.0,
+    "201": 1.0,
+    "202": 1.0,
+    "203": 1.0,
+    "204": 1.0,
+    "205": 1.0,
+    "206": 1.0,
+    "207": 1.0,
+    "208": 1.0,
+    "209": 1.0,
+    "210": 1.0,
+    "211": 1.0,
+    "212": 1.0,
+    "213": 1.0,
+    "214": 1.0,
+    "215": 1.0,
+    "216": 1.0,
+    "217": 1.0,
+    "218": 1.0,
+    "219": 1.0,
+    "220": 1.0,
+    "221": 1.0,
+    "222": 1.0,
+    "223": 1.0,
+    "224": 1.0,
+    "225": 1.0,
+    "226": 1.0,
+    "227": 1.0,
+    "228": 1.0,
+    "229": 1.0,
+    "230": 1.0,
+    "231": 1.0,
+    "232": 1.0,
+    "233": 1.0,
+    "234": 1.0,
+    "235": 1.0,
+    "236": 1.0,
+    "237": 1.0,
+    "238": 1.0,
+    "239": 1.0,
+    "240": 1.0,
+    "241": 1.0,
+    "242": 1.0,
+    "243": 1.0,
+    "244": 1.0,
+    "245": 1.0,
+    "246": 1.0,
+    "247": 1.0,
+    "248": 1.0,
+    "249": 1.0,
+    "250": 1.0,
+    "251": 1.0,
+    "252": 1.0,
+    "253": 1.0,
+    "254": 1.0,
+    "255": 1.0,
+    "256": 1.0,
+    "257": 1.0,
+    "258": 1.0,
+    "259": 1.0,
+    "260": 1.0,
+    "261": 1.0,
+    "262": 1.0,
+    "263": 1.0,
+    "264": 1.0,
+    "265": 1.0,
+    "266": 1.0,
+    "267": 1.0,
+    "268": 1.0,
+    "269": 1.0,
+    "270": 1.0,
+    "271": 1.0,
+    "272": 1.0,
+    "273": 1.0,
+    "274": 1.0,
+    "275": 1.0,
+    "276": 1.0,
+    "277": 1.0,
+    "278": 1.0,
+    "279": 1.0,
+    "280": 1.0,
+    "281": 1.0,
+    "282": 1.0,
+    "283": 1.0,
+    "284": 1.0,
+    "285": 1.0,
+    "286": 1.0,
+    "287": 1.0,
+    "288": 1.0,
+    "289": 1.0,
+    "290": 1.0,
+    "291": 1.0,
+    "292": 1.0,
+    "293": 1.0,
+    "294": 1.0,
+    "295": 1.0,
+    "296": 1.0
+  },
+  "gods": [
+    {
+      "id": "client_fetchapi",
+      "label": "fetchApi()",
+      "degree": 74
+    },
+    {
+      "id": "ghostwriter_runassistantreply",
+      "label": "runAssistantReply()",
+      "degree": 23
+    },
+    {
+      "id": "analytics_trackproductevent",
+      "label": "trackProductEvent()",
+      "degree": 17
+    },
+    {
+      "id": "settings_getsetting",
+      "label": "getSetting()",
+      "degree": 16
+    },
+    {
+      "id": "client_rxresumeclientimpl",
+      "label": "RxResumeClientImpl",
+      "degree": 15
+    },
+    {
+      "id": "settingspage_onsave",
+      "label": "onSave()",
+      "degree": 15
+    },
+    {
+      "id": "registry_createregistry",
+      "label": "createRegistry()",
+      "degree": 14
+    },
+    {
+      "id": "settings_geteffectivesettings",
+      "label": "getEffectiveSettings()",
+      "degree": 14
+    },
+    {
+      "id": "tracer_links_resolvetracerredirect",
+      "label": "resolveTracerRedirect()",
+      "degree": 14
+    },
+    {
+      "id": "renderwithqueryclient_renderwithqueryclient",
+      "label": "renderWithQueryClient()",
+      "degree": 14
+    }
+  ],
+  "surprises": [
+    {
+      "source": "main()",
+      "target": "runPipeline()",
+      "source_files": [
+        "server/pipeline/run.ts",
+        "client/api/client.ts"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "loadProfileStep()",
+      "target": "getProfile()",
+      "source_files": [
+        "server/pipeline/steps/load-profile.ts",
+        "client/api/client.ts"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "executeJobActionForJob()",
+      "target": "processJob()",
+      "source_files": [
+        "server/api/routes/jobs.ts",
+        "client/api/client.ts"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "getEffectiveSettings()",
+      "target": "getProfile()",
+      "source_files": [
+        "server/services/settings.ts",
+        "client/api/client.ts"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "buildJobChatPromptContext()",
+      "target": "getProfile()",
+      "source_files": [
+        "server/services/ghostwriter-context.ts",
+        "client/api/client.ts"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `generatePdf()` connect `getConfiguredRxResum` to `JobDetailPanel.test.`, `clearDatabase()`, `OnboardingGate.tsx`, `bucketClicks()`?",
+      "why": "High betweenness centrality (0.103) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `renderResumePdf()` connect `JobDetailPanel.test.` to `getConfiguredRxResum`?",
+      "why": "High betweenness centrality (0.085) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `renderLatexPdf()` connect `JobDetailPanel.test.` to `buildLatexDocument()`?",
+      "why": "High betweenness centrality (0.071) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 14 inferred relationships involving `runAssistantReply()` (e.g. with `getThreadForJob()` and `notFound()`) actually correct?",
+      "why": "`runAssistantReply()` has 14 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 13 inferred relationships involving `trackProductEvent()` (e.g. with `handleSkip()` and `handleFinalize()`) actually correct?",
+      "why": "`trackProductEvent()` has 13 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 15 inferred relationships involving `getSetting()` (e.g. with `notifyPipelineWebhookStep()` and `scoreJobsStep()`) actually correct?",
+      "why": "`getSetting()` has 15 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `client.ts` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.03 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

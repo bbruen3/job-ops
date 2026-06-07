@@ -70,3 +70,10 @@ export type PromptTemplatesValues = {
   tailoringPromptTemplate: EffectiveDefault<string>;
   scoringPromptTemplate: EffectiveDefault<string>;
 };
+
+export type PipelineValues = {
+  searchTerms: EffectiveDefault<string[]>;
+  searchCities: EffectiveDefault<string>;
+  workplaceTypes: EffectiveDefault<string[]>;
+  pipelineRunMode: EffectiveDefault<string>;
+};
