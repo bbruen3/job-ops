@@ -118,6 +118,11 @@ const runPipelineSchema = z.object({
     )
     .min(1)
     .optional(),
+  enableCrawling: z.boolean().optional(),
+  enableScoring: z.boolean().optional(),
+  enableImporting: z.boolean().optional(),
+  enableAutoTailoring: z.boolean().optional(),
+  pipelineRunMode: z.enum(["automatic", "discovery-only"]).optional(),
 });
 
 pipelineRouter.post("/run", async (req: Request, res: Response) => {

@@ -11,7 +11,7 @@ import { join } from "node:path";
 import { logger } from "@infra/logger";
 import { trackServerProductEvent } from "@infra/product-analytics";
 import { runWithRequestContext } from "@infra/request-context";
-import type { PipelineConfig } from "@shared/types";
+import type { CreateJobInput, PipelineConfig } from "@shared/types";
 import { getDataDir } from "../config/dataDir";
 import * as jobsRepo from "../repositories/jobs";
 import * as pipelineRepo from "../repositories/pipeline";
@@ -66,6 +66,37 @@ function ensureNotCancelled(): void {
 }
 
 /**
+ * Resolve pipelineRunMode from env var. The DB-stored setting
+ * can be read asynchronously but for simplicity we use process.env
+ * which is populated at startup from .env or env defaults.
+ * Explicit API flags override the mode.
+ */
+function resolvePipelineRunMode(
+  apiConfig: Partial<PipelineConfig>,
+): PipelineConfig["pipelineRunMode"] {
+  if (apiConfig.pipelineRunMode) return apiConfig.pipelineRunMode;
+  const raw = process.env.PIPELINE_RUN_MODE?.trim().toLowerCase();
+  return raw === "discovery-only" ? "discovery-only" : "automatic";
+}
+
+/**
+ * Apply run mode as default stage flags. Explicit flags override.
+ */
+function applyRunModeFlags(
+  mode: "automatic" | "discovery-only",
+): Partial<PipelineConfig> {
+  if (mode === "discovery-only") {
+    return {
+      enableCrawling: true,
+      enableImporting: true,
+      enableScoring: false,
+      enableAutoTailoring: false,
+    };
+  }
+  return {};
+}
+
+/**
  * Run the full job discovery and processing pipeline.
  */
 export async function runPipeline(
@@ -89,7 +120,15 @@ export async function runPipeline(
   activePipelineRunId = "pending";
   cancelRequestedAt = null;
   resetProgress();
-  const mergedConfig = { ...DEFAULT_CONFIG, ...config };
+
+  // Build merged config: defaults ← run mode flags ← explicit API flags
+  const runMode = resolvePipelineRunMode(config);
+  const mergedConfig = {
+    ...DEFAULT_CONFIG,
+    ...applyRunModeFlags(runMode),
+    ...config,
+  };
+  mergedConfig.pipelineRunMode = runMode;
 
   const pipelineRun = await pipelineRepo.createPipelineRun();
   activePipelineRunId = pipelineRun.id;
@@ -108,25 +147,49 @@ export async function runPipeline(
       ensureNotCancelled();
       const profile = await loadProfileStep();
 
-      ensureNotCancelled();
-      const { discoveredJobs } = await discoverJobsStep({
-        mergedConfig,
-        shouldCancel: () => cancelRequestedAt !== null,
-      });
+      // Stage 1: Crawling (discover new jobs from sources)
+      const emptyDiscovery = { discoveredJobs: [] as CreateJobInput[], sourceErrors: [] as string[] };
+      const { discoveredJobs } = mergedConfig.enableCrawling !== false
+        ? await discoverJobsStep({
+            mergedConfig,
+            shouldCancel: () => cancelRequestedAt !== null,
+          }).catch((error) => {
+            pipelineLogger.error("Crawling failed", error);
+            return emptyDiscovery;
+          })
+        : (() => {
+            pipelineLogger.info("Crawling disabled — skipping discovery");
+            return emptyDiscovery;
+          })();
 
-      ensureNotCancelled();
-      const { created } = await importJobsStep({ discoveredJobs });
-      jobsDiscovered = created;
+      // Stage 2: Importing (save discovered jobs to DB)
+      if (mergedConfig.enableImporting !== false && discoveredJobs.length > 0) {
+        ensureNotCancelled();
+        const { created } = await importJobsStep({ discoveredJobs });
+        jobsDiscovered = created;
+        await pipelineRepo.updatePipelineRun(pipelineRun.id, {
+          jobsDiscovered: created,
+        });
+      } else if (discoveredJobs.length > 0) {
+        pipelineLogger.info("Importing disabled — discovered jobs will not be saved");
+      }
 
-      await pipelineRepo.updatePipelineRun(pipelineRun.id, {
-        jobsDiscovered: created,
-      });
+      // Stage 3: Scoring (LLM evaluate job fit)
+      let unprocessedJobs: Awaited<ReturnType<typeof scoreJobsStep>>["unprocessedJobs"] = [];
+      let scoredJobs: Awaited<ReturnType<typeof scoreJobsStep>>["scoredJobs"] = [];
 
-      ensureNotCancelled();
-      const { unprocessedJobs, scoredJobs } = await scoreJobsStep({
-        profile,
-        shouldCancel: () => cancelRequestedAt !== null,
-      });
+      if (mergedConfig.enableScoring !== false) {
+        ensureNotCancelled();
+        const scoringResult = await scoreJobsStep({
+          profile,
+          shouldCancel: () => cancelRequestedAt !== null,
+        });
+        unprocessedJobs = scoringResult.unprocessedJobs;
+        scoredJobs = scoringResult.scoredJobs;
+      } else {
+        pipelineLogger.info("Scoring disabled — jobs remain unscored");
+        progressHelpers.stageSkipped("Scoring disabled by configuration");
+      }
 
       ensureNotCancelled();
       const jobsToProcess = selectJobsStep({
@@ -138,36 +201,43 @@ export async function runPipeline(
         candidates: jobsToProcess.length,
       });
 
-      const { processedCount } = await processJobsStep({
-        jobsToProcess,
-        processJob,
-        shouldCancel: () => cancelRequestedAt !== null,
-      });
-      jobsProcessed = processedCount;
+      // Stage 4: Auto-tailoring (summarize + PDF)
+      if (mergedConfig.enableAutoTailoring !== false && jobsToProcess.length > 0) {
+        const { processedCount } = await processJobsStep({
+          jobsToProcess,
+          processJob,
+          shouldCancel: () => cancelRequestedAt !== null,
+        });
+        jobsProcessed = processedCount;
+      } else if (jobsToProcess.length > 0) {
+        pipelineLogger.info("Auto-tailoring disabled — scored jobs remain unprocessed");
+        progressHelpers.stageSkipped("Auto-tailoring disabled by configuration");
+      }
 
       await pipelineRepo.updatePipelineRun(pipelineRun.id, {
         status: "completed",
         completedAt: new Date().toISOString(),
-        jobsProcessed: processedCount,
+        jobsDiscovered,
+        jobsProcessed,
       });
 
-      progressHelpers.complete(created, processedCount);
+      progressHelpers.complete(jobsDiscovered, jobsProcessed);
       pipelineLogger.info("Pipeline run completed", {
-        jobsDiscovered: created,
-        jobsProcessed: processedCount,
+        jobsDiscovered,
+        jobsProcessed,
       });
 
       await notifyPipelineWebhookStep("pipeline.completed", {
         pipelineRunId: pipelineRun.id,
-        jobsDiscovered: created,
+        jobsDiscovered,
         jobsScored: unprocessedJobs.length,
-        jobsProcessed: processedCount,
+        jobsProcessed,
       });
 
       return {
         success: true,
-        jobsDiscovered: created,
-        jobsProcessed: processedCount,
+        jobsDiscovered,
+        jobsProcessed,
       };
     } catch (error) {
       if (error instanceof PipelineCancelledError) {

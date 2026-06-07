@@ -217,6 +217,7 @@ export interface AppSettings {
   penalizeMissingSalary: Resolved<boolean>;
   missingSalaryPenalty: Resolved<number>;
   autoSkipScoreThreshold: Resolved<number | null>;
+  pipelineRunMode: Resolved<string>;
   rxresumeMode: Resolved<RxResumeMode>;
 
   // Model variants (no own default, fallback to model.value):

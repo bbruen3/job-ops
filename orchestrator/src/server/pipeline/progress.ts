@@ -12,7 +12,8 @@ export type PipelineStep =
   | "processing"
   | "completed"
   | "cancelled"
-  | "failed";
+  | "failed"
+  | "stage_skipped";
 
 export type CrawlSource = string;
 
@@ -463,4 +464,63 @@ export const progressHelpers = {
       error,
       completedAt: new Date().toISOString(),
     }),
+
+  stageSkipped: (reason: string) =>
+    updateProgress({
+      step: "stage_skipped",
+      message: reason,
+      detail: reason,
+    }),
 };
+
+// ──────────────────────────────────────────────────
+// Job-scoped SSE progress for per-job processing
+// ──────────────────────────────────────────────────
+
+export type JobProgressStep = "tailoring" | "pdf" | "complete" | "failed";
+
+export interface JobProgressEvent {
+  step: JobProgressStep;
+  jobId: string;
+  message?: string;
+}
+
+type JobProgressListener = (event: JobProgressEvent) => void;
+const jobListeners = new Map<string, Set<JobProgressListener>>();
+
+/**
+ * Emit a progress event for a specific job.
+ */
+export function emitJobProgress(jobId: string, event: JobProgressEvent): void {
+  const listeners = jobListeners.get(jobId);
+  if (!listeners) return;
+  for (const listener of listeners) {
+    try {
+      listener(event);
+    } catch (error) {
+      logger.error("Error in job progress listener", error);
+    }
+  }
+}
+
+/**
+ * Subscribe to progress events for a specific job.
+ */
+export function subscribeToJobProgress(
+  jobId: string,
+  listener: JobProgressListener,
+): () => void {
+  if (!jobListeners.has(jobId)) {
+    jobListeners.set(jobId, new Set());
+  }
+  jobListeners.get(jobId)!.add(listener);
+
+  return () => {
+    const listeners = jobListeners.get(jobId);
+    if (!listeners) return;
+    listeners.delete(listener);
+    if (listeners.size === 0) {
+      jobListeners.delete(jobId);
+    }
+  };
+}

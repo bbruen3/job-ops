@@ -1012,6 +1012,14 @@ export async function cancelPipeline(): Promise<{
   }>("/pipeline/cancel", {
     method: "POST",
   });
+
+export async function processJob(jobId: string, options?: {
+  force?: boolean;
+}): Promise<{ jobId: string; status: string }> {
+  return fetchApi<{ jobId: string; status: string }>(`/jobs/${jobId}/process`, {
+    method: "POST",
+    body: options ? JSON.stringify(options) : undefined,
+  });
 }
 
 // Post-Application Tracking API

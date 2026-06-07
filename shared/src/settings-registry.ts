@@ -570,6 +570,23 @@ export const settingsRegistry = {
       return value === null || value === undefined ? null : String(value);
     },
   },
+  pipelineRunMode: {
+    kind: "typed" as const,
+    envKey: "PIPELINE_RUN_MODE",
+    schema: z.enum(["automatic", "discovery-only"]).nullable(),
+    default: (): string => {
+      if (typeof process === "undefined") return "automatic";
+      const raw = process.env.PIPELINE_RUN_MODE?.trim().toLowerCase();
+      return raw === "discovery-only" ? "discovery-only" : "automatic";
+    },
+    parse: (raw: string | undefined): string | null => {
+      if (!raw) return null;
+      const trimmed = raw.trim().toLowerCase();
+      return trimmed === "automatic" || trimmed === "discovery-only" ? trimmed : null;
+    },
+    serialize: (value: string | null | undefined): string | null =>
+      value ?? null,
+  },
 
   // --- Model Variants ---
   modelScorer: {

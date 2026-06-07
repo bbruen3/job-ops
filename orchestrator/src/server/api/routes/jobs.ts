@@ -13,8 +13,10 @@ import { sanitizeWebhookPayload } from "@infra/sanitize";
 import { setupSse, startSseHeartbeat, writeSseData } from "@infra/sse";
 import { isDemoMode, sendDemoBlocked } from "@server/config/demo";
 import {
+  emitJobProgress,
   generateFinalPdf,
   processJob,
+  subscribeToJobProgress,
   summarizeJob,
 } from "@server/pipeline/index";
 import * as jobsRepo from "@server/repositories/jobs";
@@ -1399,6 +1401,75 @@ jobsRouter.delete("/status/:status", async (req: Request, res: Response) => {
   } catch (error) {
     fail(res, toAppError(error));
   }
+});
+
+/**
+ * POST /api/jobs/:id/process - Process a single job (summarize + PDF)
+ */
+const processJobBodySchema = z.object({
+  force: z.boolean().optional(),
+});
+
+jobsRouter.post("/:id/process", async (req: Request, res: Response) => {
+  try {
+    const jobId = req.params.id;
+    const { force } = processJobBodySchema.parse(req.body);
+
+    if (isDemoMode()) {
+      const simulated = await simulateProcessJob(jobId, { force });
+      return ok(res, simulated);
+    }
+
+    const job = await jobsRepo.getJobById(jobId);
+    if (!job) return fail(res, notFound("Job not found"));
+
+    // Step 1: Summarize & Select Projects
+    emitJobProgress(jobId, { step: "tailoring", jobId, message: "Generating tailored summary..." });
+    const sumResult = await summarizeJob(jobId, { force, analyticsOrigin: "move_to_ready" });
+    if (!sumResult.success) {
+      emitJobProgress(jobId, { step: "failed", jobId, message: sumResult.error || "Tailoring failed" });
+      return fail(res, new AppError({ status: 500, code: "TAILORING_FAILED", message: sumResult.error || "Unknown error" }));
+    }
+
+    // Step 2: Generate PDF
+    emitJobProgress(jobId, { step: "pdf", jobId, message: "Generating PDF..." });
+    const pdfResult = await generateFinalPdf(jobId, { force, analyticsOrigin: "move_to_ready" });
+    if (!pdfResult.success) {
+      emitJobProgress(jobId, { step: "failed", jobId, message: pdfResult.error || "PDF generation failed" });
+      return fail(res, new AppError({ status: 500, code: "PDF_FAILED", message: pdfResult.error || "Unknown error" }));
+    }
+
+    emitJobProgress(jobId, { step: "complete", jobId, message: "Job processed successfully" });
+    ok(res, { jobId, status: "ready" });
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return fail(res, badRequest(error.message, error.flatten()));
+    }
+    fail(res, toAppError(error));
+  }
+});
+
+/**
+ * GET /api/jobs/:id/progress - SSE endpoint for per-job processing progress
+ */
+jobsRouter.get("/:id/progress", (req: Request, res: Response) => {
+  const jobId = req.params.id;
+  setupSse(res, {
+    cacheControl: "no-cache, no-transform",
+    disableBuffering: true,
+    flushHeaders: true,
+  });
+
+  const unsubscribe = subscribeToJobProgress(jobId, (event) => {
+    writeSseData(res, event);
+  });
+
+  const stopHeartbeat = startSseHeartbeat(res);
+
+  req.on("close", () => {
+    stopHeartbeat();
+    unsubscribe();
+  });
 });
 
 /**

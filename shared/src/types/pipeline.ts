@@ -10,6 +10,7 @@ export interface PipelineConfig {
   enableScoring?: boolean;
   enableImporting?: boolean;
   enableAutoTailoring?: boolean;
+  pipelineRunMode?: "automatic" | "discovery-only";
 }
 
 export interface PipelineRun {
