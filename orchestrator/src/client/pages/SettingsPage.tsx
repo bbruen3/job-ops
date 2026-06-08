@@ -1290,6 +1290,8 @@ export const SettingsPage: React.FC = () => {
         ),
         workplaceTypes: (() => {
           const normalized = normalizeStringArray(data.workplaceTypes);
+          // Empty array means "no filter" — send null to use defaults
+          if (normalized.length === 0) return null;
           const normalizedDefault = normalizeStringArray(
             pipeline.workplaceTypes.default,
           );
