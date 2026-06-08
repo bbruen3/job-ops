@@ -1,0 +1,10 @@
+{
+  "name": "greenhouse-extractor",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@career-boards/greenhouse": "*",
+    "job-ops-shared": "^1.0.0"
+  }
+}

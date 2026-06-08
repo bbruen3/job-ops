@@ -1,0 +1,10 @@
+{
+  "name": "ashby-extractor",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@career-boards/ashby": "*",
+    "job-ops-shared": "^1.0.0"
+  }
+}
