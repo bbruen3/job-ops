@@ -84,7 +84,7 @@ const config: Config = {
           sidebarPath: "./sidebars.ts",
           editUrl: "https://github.com/DaKheera47/job-ops/tree/main/docs-site/",
           showLastUpdateAuthor: false,
-          showLastUpdateTime: true,
+          showLastUpdateTime: false,
         },
         sitemap: {
           // Keep search engines focused on the current stable docs URLs.
