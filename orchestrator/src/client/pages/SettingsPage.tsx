@@ -138,6 +138,7 @@ const EMPTY_RXRESUME_VALIDATION_BADGE_STATE: RxResumeValidationBadgeState = {
 
 type SettingsSectionId =
   | "model"
+  | "per-purpose-llm"
   | "chat"
   | "prompt-templates"
   | "scoring"
@@ -518,7 +519,7 @@ const mapSettingsToForm = (data: AppSettings): UpdateSettingsInput => ({
   searchTerms: data.searchTerms.override ?? null,
   searchCities: data.searchCities.override ?? null,
   workplaceTypes: data.workplaceTypes.override ?? null,
-  pipelineRunMode: data.pipelineRunMode.override ?? null,
+  pipelineRunMode: (data.pipelineRunMode.override as UpdateSettingsInput["pipelineRunMode"]) ?? null,
   llmPurposeApiKeyHints: null,
 });
 
@@ -1295,14 +1296,15 @@ export const SettingsPage: React.FC = () => {
           const normalizedDefault = normalizeStringArray(
             pipeline.workplaceTypes.default,
           );
-          return stringArraysEqual(normalized, normalizedDefault)
-            ? null
-            : normalized;
+          if (stringArraysEqual(normalized, normalizedDefault)) return null;
+          return normalized as UpdateSettingsInput["workplaceTypes"];
         })(),
-        pipelineRunMode: nullIfSame(
-          data.pipelineRunMode,
-          pipeline.pipelineRunMode.default,
-        ),
+        pipelineRunMode: (() => {
+          const val = data.pipelineRunMode;
+          const def = pipeline.pipelineRunMode.default;
+          if (val === def || val == null) return null;
+          return val as "automatic" | "discovery-only";
+        })(),
         ghostwriterSystemPromptTemplate: nullIfSame(
           normalizeString(data.ghostwriterSystemPromptTemplate),
           promptTemplates.ghostwriterSystemPromptTemplate.default,

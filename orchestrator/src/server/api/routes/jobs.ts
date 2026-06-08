@@ -1404,6 +1404,37 @@ jobsRouter.delete("/status/:status", async (req: Request, res: Response) => {
 });
 
 /**
+ * DELETE /api/jobs/:id - Delete a single discovered job
+ */
+jobsRouter.delete("/:id", async (req: Request, res: Response) => {
+  try {
+    if (isDemoMode()) {
+      return sendDemoBlocked(res, "Deleting jobs is disabled to keep the demo stable.", {
+        route: "DELETE /api/jobs/:id",
+        jobId: req.params.id,
+      });
+    }
+
+    const jobId = req.params.id;
+    const job = await jobsRepo.getJobById(jobId);
+    if (!job) return fail(res, notFound("Job not found"));
+
+    // Only allow deletion of jobs that aren't in an applied/in_progress state
+    if (job.status === "applied" || job.status === "in_progress") {
+      return fail(res, conflict("Cannot delete jobs with applied or in_progress status"));
+    }
+
+    const deleted = await jobsRepo.deleteJobById(jobId);
+    if (!deleted) return fail(res, notFound("Job not found"));
+
+    logger.info("Job deleted", { jobId, status: job.status });
+    ok(res, { message: "Job deleted", jobId });
+  } catch (error) {
+    fail(res, toAppError(error));
+  }
+});
+
+/**
  * POST /api/jobs/:id/process - Process a single job (summarize + PDF)
  */
 const processJobBodySchema = z.object({
@@ -1428,7 +1459,7 @@ jobsRouter.post("/:id/process", async (req: Request, res: Response) => {
     const sumResult = await summarizeJob(jobId, { force, analyticsOrigin: "move_to_ready" });
     if (!sumResult.success) {
       emitJobProgress(jobId, { step: "failed", jobId, message: sumResult.error || "Tailoring failed" });
-      return fail(res, new AppError({ status: 500, code: "TAILORING_FAILED", message: sumResult.error || "Unknown error" }));
+      return fail(res, new AppError({ status: 500, code: "INTERNAL_ERROR", message: sumResult.error || "Unknown error" }));
     }
 
     // Step 2: Generate PDF
@@ -1436,7 +1467,7 @@ jobsRouter.post("/:id/process", async (req: Request, res: Response) => {
     const pdfResult = await generateFinalPdf(jobId, { force, analyticsOrigin: "move_to_ready" });
     if (!pdfResult.success) {
       emitJobProgress(jobId, { step: "failed", jobId, message: pdfResult.error || "PDF generation failed" });
-      return fail(res, new AppError({ status: 500, code: "PDF_FAILED", message: pdfResult.error || "Unknown error" }));
+      return fail(res, new AppError({ status: 500, code: "INTERNAL_ERROR", message: pdfResult.error || "Unknown error" }));
     }
 
     emitJobProgress(jobId, { step: "complete", jobId, message: "Job processed successfully" });

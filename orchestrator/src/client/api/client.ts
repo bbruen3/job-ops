@@ -1430,6 +1430,12 @@ export async function clearDatabase(): Promise<{
   });
 }
 
+export async function deleteJob(jobId: string): Promise<{ message: string }> {
+  return fetchApi<{ message: string }>(`/jobs/${encodeURIComponent(jobId)}`, {
+    method: "DELETE",
+  });
+}
+
 export async function deleteJobsByStatus(status: string): Promise<{
   message: string;
   count: number;

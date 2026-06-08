@@ -73,7 +73,7 @@ function ensureNotCancelled(): void {
  */
 function resolvePipelineRunMode(
   apiConfig: Partial<PipelineConfig>,
-): PipelineConfig["pipelineRunMode"] {
+): "automatic" | "discovery-only" {
   if (apiConfig.pipelineRunMode) return apiConfig.pipelineRunMode;
   const raw = process.env.PIPELINE_RUN_MODE?.trim().toLowerCase();
   return raw === "discovery-only" ? "discovery-only" : "automatic";

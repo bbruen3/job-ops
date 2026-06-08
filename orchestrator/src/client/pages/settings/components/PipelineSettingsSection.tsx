@@ -1,9 +1,13 @@
+import * as api from "@client/api";
 import { SettingsInput } from "@client/pages/settings/components/SettingsInput";
 import { SettingsSectionFrame } from "@client/pages/settings/components/SettingsSectionFrame";
 import type { PipelineValues } from "@client/pages/settings/types";
 import type { UpdateSettingsInput } from "@shared/settings-schema.js";
 import type React from "react";
+import { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
@@ -35,6 +39,7 @@ export const PipelineSettingsSection: React.FC<PipelineSettingsSectionProps> = (
   layoutMode,
 }) => {
   const { control, watch, setValue } = useFormContext<UpdateSettingsInput>();
+  const [isClearing, setIsClearing] = useState(false);
 
   const currentWorkplaceTypes =
     watch("workplaceTypes") ?? values.workplaceTypes.default;
@@ -203,6 +208,38 @@ export const PipelineSettingsSection: React.FC<PipelineSettingsSectionProps> = (
               </Select>
             )}
           />
+        </div>
+
+        <Separator />
+
+        {/* Job Management */}
+        <div className="space-y-3">
+          <label className="text-sm font-medium">Job Management</label>
+          <p className="text-xs text-muted-foreground">
+            Clear all discovered jobs (for example, after changing search terms) or
+            delete individual jobs from the discovered tab.
+          </p>
+          <Button
+            type="button"
+            variant="destructive"
+            size="sm"
+            disabled={isClearing || isLoading || isSaving}
+            onClick={async () => {
+              if (!window.confirm("Delete ALL discovered jobs? This cannot be undone.")) return;
+              setIsClearing(true);
+              try {
+                const result = await api.deleteJobsByStatus("discovered");
+                toast.success(result.message);
+              } catch (error) {
+                const message = error instanceof Error ? error.message : "Failed to clear jobs";
+                toast.error(message);
+              } finally {
+                setIsClearing(false);
+              }
+            }}
+          >
+            {isClearing ? "Clearing..." : "Clear All Discovered"}
+          </Button>
         </div>
       </div>
     </SettingsSectionFrame>

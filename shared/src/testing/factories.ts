@@ -253,5 +253,6 @@ export const createAppSettings = (
   missingSalaryPenalty: { value: 10, default: 10, override: null },
   autoSkipScoreThreshold: { value: null, default: null, override: null },
   rxresumeMode: { value: "v5", default: "v5", override: null },
+  pipelineRunMode: { value: "automatic", default: "automatic", override: null },
   ...overrides,
 });
