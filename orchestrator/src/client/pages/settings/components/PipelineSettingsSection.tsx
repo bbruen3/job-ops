@@ -54,31 +54,46 @@ export const PipelineSettingsSection: React.FC<PipelineSettingsSectionProps> = (
           <p className="text-xs text-muted-foreground">
             Job titles and keywords to search for. One per line or comma-separated.
           </p>
-          <Controller
-            name="searchTerms"
-            control={control}
-            render={({ field }) => (
-              <Textarea
-                value={
-                  Array.isArray(field.value)
-                    ? field.value.join("\n")
-                    : Array.isArray(values.searchTerms.default)
-                      ? values.searchTerms.default.join("\n")
-                      : ""
-                }
-                onChange={(e) => {
-                  const terms = e.target.value
-                    .split(/[\n,]/g)
-                    .map((v) => v.trim())
-                    .filter(Boolean);
-                  field.onChange(terms.length > 0 ? terms : null);
+              <Controller
+                name="searchTerms"
+                control={control}
+                render={({ field }) => {
+                  // Display logic: join array with newlines.
+                  // Preserve trailing empty string so the cursor stays on the new line after Enter.
+                  const displayValue = (arr: string[] | null | undefined): string => {
+                    if (!Array.isArray(arr) || arr.length === 0) return "";
+                    // Join all terms; a trailing empty string becomes a trailing newline
+                    return arr.join("\n");
+                  };
+                  return (
+                    <Textarea
+                      value={displayValue(field.value ?? values.searchTerms.default)}
+                      onChange={(e) => {
+                        const raw = e.target.value;
+                        // Split by newlines (each line is a term) and commas (paste compat)
+                        const parts = raw.split("\n");
+                        const terms = parts.flatMap((line) =>
+                          line.split(",").map((v) => v.trim()),
+                        );
+                        // If the raw value ends with newline, preserve a trailing empty entry
+                        // so the textarea shows a blank line for continued typing
+                        const endsWithNewline = raw.endsWith("\n");
+                        // Filter out empty strings in the middle but keep trailing ones
+                        const nonEmpty = terms.filter((t, i) => t !== "" || i === terms.length - 1);
+                        const result = nonEmpty.length > 0 && !(nonEmpty.length === 1 && nonEmpty[0] === "")
+                          ? endsWithNewline && nonEmpty[nonEmpty.length - 1] !== ""
+                            ? [...nonEmpty, ""]
+                            : nonEmpty
+                          : null;
+                        field.onChange(result);
+                      }}
+                      placeholder="software engineer&#10;backend developer&#10;rust engineer"
+                      disabled={isLoading || isSaving}
+                      className="min-h-[100px]"
+                    />
+                  );
                 }}
-                placeholder="software engineer&#10;backend developer&#10;rust engineer"
-                disabled={isLoading || isSaving}
-                className="min-h-[100px]"
               />
-            )}
-          />
           {values.searchTerms.effective.length > 0 && (
             <p className="text-xs text-muted-foreground">
               Current: {values.searchTerms.effective.join(", ")}
