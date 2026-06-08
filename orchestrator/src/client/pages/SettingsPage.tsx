@@ -116,6 +116,10 @@ const DEFAULT_FORM_VALUES: UpdateSettingsInput = {
   ghostwriterSystemPromptTemplate: "",
   tailoringPromptTemplate: "",
   scoringPromptTemplate: "",
+  searchTerms: null,
+  searchCities: null,
+  workplaceTypes: null,
+  pipelineRunMode: null,
 };
 
 type LlmProviderValue = LlmProviderId | null;
@@ -511,6 +515,10 @@ const mapSettingsToForm = (data: AppSettings): UpdateSettingsInput => ({
   tailoringPromptTemplate: data.tailoringPromptTemplate.value ?? "",
   scoringPromptTemplate: data.scoringPromptTemplate.value ?? "",
   llmPurposeOverrides: data.llmPurposeOverrides.override ?? null,
+  searchTerms: data.searchTerms.override ?? null,
+  searchCities: data.searchCities.override ?? null,
+  workplaceTypes: data.workplaceTypes.override ?? null,
+  pipelineRunMode: data.pipelineRunMode.override ?? null,
   llmPurposeApiKeyHints: null,
 });
 
