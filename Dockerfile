@@ -52,6 +52,7 @@ COPY docs-site/package*.json ./docs-site/
 COPY shared/package*.json ./shared/
 COPY orchestrator/package*.json ./orchestrator/
 COPY extractors ./extractors
+COPY career-boards ./career-boards
 
 # Install Node dependencies with npm cache (dev deps needed for build).
 RUN --mount=type=cache,target=/root/.npm \
@@ -68,6 +69,7 @@ COPY docs-site ./docs-site
 COPY orchestrator ./orchestrator
 COPY visa-sponsor-providers ./visa-sponsor-providers
 COPY extractors ./extractors
+COPY career-boards ./career-boards
 
 # ============================================================================
 # PARALLEL BUILD STAGES
@@ -93,6 +95,7 @@ COPY docs-site/package*.json ./docs-site/
 COPY shared/package*.json ./shared/
 COPY orchestrator/package*.json ./orchestrator/
 COPY extractors ./extractors
+COPY career-boards ./career-boards
 
 # Install production Node dependencies only.
 RUN --mount=type=cache,target=/root/.npm \
@@ -139,6 +142,7 @@ COPY shared ./shared
 COPY orchestrator ./orchestrator
 COPY visa-sponsor-providers ./visa-sponsor-providers
 COPY extractors ./extractors
+COPY career-boards ./career-boards
 
 # Create data directory.
 RUN mkdir -p /app/data/pdfs
